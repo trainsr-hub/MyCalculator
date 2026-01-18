@@ -11,6 +11,7 @@ probel = st.number_input(
     value=50.0,
     step=0.01
 )
+st.code(probel)
 # --- Canh giữa button bằng columns ---
 col_left, col_center, col_right = st.columns([1, 2, 1])
 
@@ -22,4 +23,5 @@ with col_center:
         if result:
             st.markdown("## ✅ **SUCCESS**")
         else:
+
             st.markdown("## ❌ **FAIL**")
