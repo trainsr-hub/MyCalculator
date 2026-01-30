@@ -103,9 +103,10 @@ def tab1hatchingtime():
     else:
       ads = 1
     Now_Time = duration * 0.9**ads
+    Free_Time = max(duration * 0.05, timedelta(minutes=5))
 
     show_boxed_text("Duration", format_duration(Now_Time), "30px", bg_color="#0000ff")
-    show_boxed_text("Free", format_duration(duration * 0.05), "30px", bg_color="#008000")
+    show_boxed_text("Free", format_duration(Free_Time), "30px", bg_color="#008000")
 
 
 
