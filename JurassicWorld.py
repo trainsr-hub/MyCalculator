@@ -104,6 +104,7 @@ def tab1hatchingtime():
       ads = 1
     Now_Time = duration * 0.9**ads
     Free_Time = max(duration * 0.05, timedelta(minutes=5))
+    Timer = max(timedelta(0), Now_Time - Free_Time)
 
     # Tạo 2 cột
     col1, col2 = st.columns(2)
@@ -112,8 +113,7 @@ def tab1hatchingtime():
         show_boxed_text("Duration", format_duration(Now_Time), "30px", bg_color="#0000ff")
 
     with col2:
-        show_boxed_text("Timer", format_duration(Now_Time - Free_Time), "30px", bg_color="#8f8f8f")
-
+        show_boxed_text("Timer", format_duration(Timer), "30px", bg_color="#8f8f8f")
     show_boxed_text("Free", format_duration(Free_Time), "30px", bg_color="#008000")
 
 
