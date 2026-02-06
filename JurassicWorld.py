@@ -125,7 +125,7 @@ def tab2():
     B_duration = select_duration(3, "tab2_B")
 
     # Tính toán và hiển thị kết quả
-    result1 = (max(5, 0.95 * B_duration) + gap_duration) / 0.95
+    result1 = (max(timedelta(minutes=5), 0.95 * B_duration) + gap_duration) / 0.95
     show_boxed_text(
         "Static",
         format_duration(result1),
