@@ -127,18 +127,18 @@ def tab2():
     # Tính toán và hiển thị kết quả
     result1 = B_duration + gap_duration / 0.95
     show_boxed_text(
-        "Result 1",
+        "Static",
         format_duration(result1),
         "30px",
-        bg_color="#444444"
+        bg_color="#008000"
     )
 
     result2 = (gap_duration + timedelta(minutes=5)) / 0.95
     show_boxed_text(
-        "Result 2",
+        "Drops",
         format_duration(result2),
         "30px",
-        bg_color="#666666"
+        bg_color="#0000ff"
     )
 
 def main():
