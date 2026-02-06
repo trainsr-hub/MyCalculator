@@ -137,7 +137,7 @@ def main():
     st.title("Streamlit App")
 
     # Thêm tab mới
-    tabs = st.tabs(["Hatching Time", "Tab2"])
+    tabs = st.tabs(["Hatching Time", "Timers' Gap Balance"])
 
     with tabs[0]:
         tab1hatchingtime()
