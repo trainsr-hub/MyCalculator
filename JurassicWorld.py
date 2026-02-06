@@ -121,6 +121,8 @@ def tab2():
     # Chọn gap_duration (2 selector: hours, minutes)
     gap_duration = select_duration(2, "tab2_gap")
 
+    st.markdown("---")
+
     # Chọn B_duration (3 selector: days, hours, minutes)
     B_duration = select_duration(3, "tab2_B")
 
