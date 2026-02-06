@@ -84,15 +84,16 @@ def select_duration(num_selectors, key_prefix):
 
 
 def format_duration(td):
-    # Chuyển timedelta thành chuỗi "Xd Yh Zm", chỉ hiển thị phần khác 0
-    total_minutes = int(td.total_seconds() // 60)
+    # Chuyển timedelta thành chuỗi "Xd Yh Zm Ws", chỉ hiển thị phần khác 0
+    total_seconds = int(td.total_seconds())
 
-    d, rem_min = divmod(total_minutes, 1440)
-    h, m = divmod(rem_min, 60)
+    d, rem = divmod(total_seconds, 86400)   # 1 ngày = 86400 giây
+    h, rem = divmod(rem, 3600)              # 1 giờ = 3600 giây
+    m, s = divmod(rem, 60)                  # phần còn lại là phút và giây
 
     return " ".join(
-        f"{v}{k}" for v, k in [(d, "d"), (h, "h"), (m, "m")] if v
-    ) or "0m"
+        f"{v}{k}" for v, k in [(d, "d"), (h, "h"), (m, "m"), (s, "s")] if v
+    ) or "0s"
 
 def tab1hatchingtime():
 
