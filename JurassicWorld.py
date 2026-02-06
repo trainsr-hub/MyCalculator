@@ -117,18 +117,41 @@ def tab1hatchingtime():
     show_boxed_text("Free", format_duration(Free_Time), "30px", bg_color="#008000")
 
 
+def tab2():
+    # Chọn gap_duration (2 selector: hours, minutes)
+    gap_duration = select_duration(2, "tab2_gap")
 
+    # Chọn B_duration (3 selector: days, hours, minutes)
+    B_duration = select_duration(3, "tab2_B")
+
+    # Tính toán và hiển thị kết quả
+    result1 = B_duration + gap_duration / 0.95
+    show_boxed_text(
+        "Result 1",
+        format_duration(result1),
+        "30px",
+        bg_color="#444444"
+    )
+
+    result2 = (gap_duration + timedelta(minutes=5)) / 0.95
+    show_boxed_text(
+        "Result 2",
+        format_duration(result2),
+        "30px",
+        bg_color="#666666"
+    )
 
 def main():
-    # Hàm main khởi tạo giao diện chính của app
     st.title("Streamlit App")
 
-    # Tạo tabs
-    tabs = st.tabs(["Hatching Time"])
+    # Thêm tab mới
+    tabs = st.tabs(["Hatching Time", "Tab2"])
 
-    # Gán nội dung cho tab đầu tiên
     with tabs[0]:
         tab1hatchingtime()
+
+    with tabs[1]:
+        tab2()
 
 if __name__ == "__main__":
     main()
