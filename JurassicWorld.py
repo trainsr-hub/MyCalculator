@@ -149,6 +149,7 @@ def tab3():
 
     # 2 number_input chia 2 cột cùng hàng
     col1, col2 = st.columns(2)
+ 
 
     with col1:
         Health = st.number_input("Health", min_value=0, value=0, step=50)
@@ -157,9 +158,10 @@ def tab3():
         Attack = st.number_input("Attack", min_value=0, value=0, step=25)
 
     # Hiển thị kết quả bằng show_boxed_text
+    Team_Fero = int(Health + 3.2 * Attack)
     show_boxed_text(
         "Result",
-        f"{Health + 3.2 * Attack}",
+        f"{Team_Fero}",
         "30px",
         bg_color="#222222"
     )
