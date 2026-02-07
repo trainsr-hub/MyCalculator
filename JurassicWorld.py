@@ -169,7 +169,9 @@ def tab3():
     )
 
     # Hiển thị value tương ứng của key Rank đã chọn
-    st.code(max_Fero)
+    with col1: Health = st.number_input("3rd Health", min_value=0, value=0, step=50)
+    with col2: Attack = st.number_input("3rd Attack", min_value=0, value=0, step=25)
+    
 def main():
     st.title("Streamlit App")
 
