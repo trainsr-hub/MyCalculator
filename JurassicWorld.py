@@ -134,18 +134,52 @@ def tab2():
         "30px",
         bg_color="#008000"
     )
+def tab3():
+    # Biến Rank dạng dict theo yêu cầu
+    Rank = {
+        "1% Dominator": (6500, 7100)
+    }
 
+    # Selector lấy key của Rank, default là key đầu tiên
+    selected_rank = st.selectbox(
+        "Rank",
+        options=list(Rank.keys()),
+        index=0
+    )
+
+    # 2 number_input chia 2 cột cùng hàng
+    col1, col2 = st.columns(2)
+
+    with col1:
+        Health = st.number_input("Health", value=0.0)
+
+    with col2:
+        Attack = st.number_input("Attack", value=0.0)
+
+    # Hiển thị kết quả bằng show_boxed_text
+    show_boxed_text(
+        "Result",
+        f"{Health + 3.2 * Attack}",
+        "30px",
+        bg_color="#222222"
+    )
+
+    # Hiển thị value tương ứng của key Rank đã chọn
+    st.code(Rank[selected_rank])
 def main():
     st.title("Streamlit App")
 
     # Thêm tab mới
-    tabs = st.tabs(["Hatching Time", "Timers' Gap Balance"])
+    tabs = st.tabs(["Hatching Time", "Timers' Gap Balance", "Team Building"])
 
     with tabs[0]:
         tab1hatchingtime()
 
     with tabs[1]:
         tab2()
-
+        
+    with tabs[2]:
+    	tab3()
 if __name__ == "__main__":
     main()
+    
