@@ -137,8 +137,8 @@ def tab2():
 def tab3():
     # Biến Rank dạng dict theo yêu cầu
     Rank = {
-        "Dominator 2K5 ~ Tape": , 7100,
-        "Dominator 1K5 ~ I-Rex": , 6500
+        "Dominator 2K5 ~ Tape": 7100,
+        "Dominator 1K5 ~ I-Rex": 6500
     }
 
     # Selector lấy key của Rank, default là key đầu tiên
