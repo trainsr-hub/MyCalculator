@@ -163,7 +163,7 @@ def tab3():
     Team_Fero = int(Health + 3.2 * Attack)
     show_boxed_text(
         "Ferocity",
-        f"{Team_Fero}/{max_Fero}\n{Team_Fero - max_Fero}",
+        f"{max_Fero - Team_Fero}",
         "30px",
         bg_color="#fc6a03"
     )
