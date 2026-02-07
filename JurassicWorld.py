@@ -169,9 +169,8 @@ def tab3():
     )
 
     # Hiển thị value tương ứng của key Rank đã chọn
-    col11, col22 = st.columns(2)
-    with col11: Health = st.number_input("3rd Health", min_value=0, value=0, step=50)
-    with col22: Attack = st.number_input("3rd Attack", min_value=0, value=0, step=25)
+    Health3 = st.number_input("3rd Health", min_value=0, value=0, step=50)
+    Attack3 = st.number_input("3rd Attack", min_value=0, value=0, step=25)
     
 def main():
     st.title("Streamlit App")
