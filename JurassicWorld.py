@@ -163,11 +163,12 @@ def tab3():
         "Result",
         f"{Team_Fero}",
         "30px",
-        bg_color="#222222"
+        bg_color="#fc6a03"
     )
 
     # Hiển thị value tương ứng của key Rank đã chọn
-    st.code(Rank[selected_rank])
+    min_Fero, max_Fero = Rank[selected_rank]
+    st.code(min_Fero)
 def main():
     st.title("Streamlit App")
 
