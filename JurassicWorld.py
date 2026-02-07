@@ -137,7 +137,8 @@ def tab2():
 def tab3():
     # Biến Rank dạng dict theo yêu cầu
     Rank = {
-        "1% Dominator": (6500, 7100)
+        "Dominator 2K5 ~ Tape": , 7100,
+        "Dominator 1K5 ~ I-Rex": , 6500
     }
 
     # Selector lấy key của Rank, default là key đầu tiên
@@ -158,17 +159,17 @@ def tab3():
         Attack = st.number_input("Attack", min_value=0, value=0, step=25)
 
     # Hiển thị kết quả bằng show_boxed_text
+    max_Fero = Rank[selected_rank]
     Team_Fero = int(Health + 3.2 * Attack)
     show_boxed_text(
-        "Result",
-        f"{Team_Fero}",
+        "Ferocity",
+        f"{Team_Fero}/{max_Fero}",
         "30px",
         bg_color="#fc6a03"
     )
 
     # Hiển thị value tương ứng của key Rank đã chọn
-    min_Fero, max_Fero = Rank[selected_rank]
-    st.code(min_Fero)
+    st.code(max_Fero)
 def main():
     st.title("Streamlit App")
 
