@@ -161,16 +161,16 @@ def tab3():
     # Hiển thị kết quả bằng show_boxed_text
     max_Fero = Rank[selected_rank]
     Team_Fero = int(Health + 3.2 * Attack)
+    st.markdown("---")
+    Health3 = st.number_input("3rd Health", min_value=0, value=0, step=50)
+    Attack3 = st.number_input("3rd Attack", min_value=0, value=0, step=25)
+    
     show_boxed_text(
-        "Ferocity",
-        f"{max_Fero - Team_Fero}",
+        "Remaining",
+        f"{int(max_Fero - Team_Fero - Health3 - Attack3 * 3.2)}",
         "30px",
         bg_color="#fc6a03"
     )
-
-    # Hiển thị value tương ứng của key Rank đã chọn
-    Health3 = st.number_input("3rd Health", min_value=0, value=0, step=50)
-    Attack3 = st.number_input("3rd Attack", min_value=0, value=0, step=25)
     
 def main():
     st.title("Streamlit App")
