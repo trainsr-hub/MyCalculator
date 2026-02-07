@@ -150,21 +150,12 @@ def tab3():
     # 2 number_input chia 2 cột cùng hàng
     col1, col2 = st.columns(2)
 
-with col1:
-    Health = st.number_input(
-        "Health",
-        min_value=0,      # số tự nhiên (>= 0)
-        value=0,
-        step=50           # bước nhảy 50
-    )
+    with col1:
+        Health = st.number_input("Health", min_value=0, value=0, step=50)
 
-with col2:
-    Attack = st.number_input(
-        "Attack",
-        min_value=0,      # số tự nhiên (>= 0)
-        value=0,
-        step=25           # bước nhảy 25
-    )
+    with col2:
+        Attack = st.number_input("Attack", min_value=0, value=0, step=25)
+
     # Hiển thị kết quả bằng show_boxed_text
     show_boxed_text(
         "Result",
