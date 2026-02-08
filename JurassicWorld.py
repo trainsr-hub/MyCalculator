@@ -153,14 +153,17 @@ def tab3():
  
 
     with col1:
-        Health = st.number_input("Health", min_value=0, value=0, step=50)
+        Health = st.number_input("Flock Health", min_value=0, value=0, step=50)
+        Main_Health = st.number_input("Ace Health", min_value=0, value=0, step=50)
 
     with col2:
-        Attack = st.number_input("Attack", min_value=0, value=0, step=25)
+        Attack = st.number_input("Flock Attack", min_value=0, value=0, step=25)
+        Main_Attack = st.number_input("Ace Attack", min_value=0, value=0, step=25)
+        
 
     # Hiển thị kết quả bằng show_boxed_text
     max_Fero = Rank[selected_rank]
-    Team_Fero = int(Health + 3.2 * Attack)
+    Team_Fero = int(Health +  Main_Health + 3.2 * Attack + 3.2 * Main_Attack)
     st.markdown("---")
     Health3 = st.number_input("3rd Health", min_value=0, value=0, step=50)
     Attack3 = st.number_input("3rd Attack", min_value=0, value=0, step=25)
