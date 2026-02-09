@@ -28,7 +28,7 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
         x1 = max(0, min(x_max, Optimal_x / 2))
         x2 = max(0, min(x_max, Optimal_x / 1.5))
         x3 = max(0, min(x_max, Optimal_x / 1.1))
-        x4 = max(0, min(x_max, Optimal_x * 1.5))
+        x4 = max(0, min(x_max, Optimal_x * 1.1))
 
         # Mask từng đoạn
         mask1 = (x > 0) & (x <= x1)
