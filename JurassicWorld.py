@@ -3,7 +3,8 @@ from datetime import timedelta  # ← thêm dòng này để dùng timedelta
 import numpy as np
 import matplotlib.pyplot as plt
 
-def show_graph(C, x_point=None, y_point=None):
+
+def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
 
     if C <= 0:
         st.warning("No positive solution region.")
@@ -17,21 +18,67 @@ def show_graph(C, x_point=None, y_point=None):
 
     fig, ax = plt.subplots()
 
-    # Vùng ≤ C
-    ax.fill_between(x, 0, y, alpha=0.3)
+    # =========================
+    # VÙNG NON-RED (≤ C)
+    # =========================
 
-    # Vùng > C
+    if Optimal_x is not None:
+
+        # Giới hạn các mốc trong [0, x_max]
+        x1 = max(0, min(x_max, Optimal_x / 3))
+        x2 = max(0, min(x_max, Optimal_x / 1.5))
+
+        # Mask từng đoạn
+        mask1 = (x >= 0) & (x <= x1)
+        mask2 = (x > x1) & (x <= x2)
+        mask3 = (x > x2) & (x <= x_max)
+
+        # 0 → Optimal_x/3  → CAM
+        ax.fill_between(
+            x[mask1],
+            0,
+            y[mask1],
+            color="orange",
+            alpha=0.5
+        )
+
+        # Optimal_x/3 → Optimal_x/1.5 → giữ màu mặc định (xanh dương)
+        ax.fill_between(
+            x[mask2],
+            0,
+            y[mask2],
+            alpha=0.3
+        )
+
+        # Optimal_x/1.5 → x_max → XANH LÁ
+        ax.fill_between(
+            x[mask3],
+            0,
+            y[mask3],
+            color="green",
+            alpha=0.4
+        )
+
+    else:
+        # Nếu không có Optimal_x thì giữ nguyên
+        ax.fill_between(x, 0, y, alpha=0.3)
+
+    # =========================
+    # VÙNG RED (> C)
+    # =========================
     ax.fill_between(x, y, y_max, color="red", alpha=0.3)
 
     # Đường phương trình
     ax.plot(x, y)
 
+    # =========================
+    # PHẦN ĐIỂM & GIAO
+    # =========================
+
     if x_point is not None and y_point is not None:
 
-        # Điểm chính
         ax.scatter(x_point, y_point, s=100, zorder=5)
 
-        # Hiển thị tọa độ điểm chính
         ax.annotate(
             f"({x_point}, {y_point})",
             (x_point, y_point),
@@ -39,31 +86,28 @@ def show_graph(C, x_point=None, y_point=None):
             textcoords="offset points"
         )
 
-        # 🔹 Đường gióng x = x_point
         ax.axvline(x=x_point, linestyle="--")
-
-        # 🔹 Đường gióng y = y_point
         ax.axhline(y=y_point, linestyle="--")
 
-        # 🔸 Giao với phương trình khi x = x_point
+        # Giao theo x
         y_intersect = int(C - 3.2 * x_point)
         ax.scatter(x_point, y_intersect, zorder=6)
 
         ax.annotate(
-            f"({x_point}, {y_intersect}) ~ Máu trâu",
+            f"Máu trâu\n({x_point}, {y_intersect})",
             (x_point, y_intersect),
-            xytext=(5, -15),
+            xytext=(5, -25),
             textcoords="offset points"
         )
 
-        # 🔸 Giao với phương trình khi y = y_point
+        # Giao theo y
         x_intersect = int((C - y_point) / 3.2)
         ax.scatter(x_intersect, y_point, zorder=6)
 
         ax.annotate(
             f"Damage to\n({x_intersect}, {y_point})",
             (x_intersect, y_point),
-            xytext=(5, 5),
+            xytext=(5, 10),
             textcoords="offset points"
         )
 
@@ -76,7 +120,7 @@ def show_graph(C, x_point=None, y_point=None):
     ax.grid(True)
 
     st.pyplot(fig)
-    
+
 def show_boxed_text(
     label,
     value,
@@ -263,7 +307,7 @@ def tab3():
         "30px",
         bg_color="#fc6a03"
     )
-    show_graph(int(max_Fero - Team_Fero), Attack3, Health3)
+    show_graph(int(max_Fero - Team_Fero), Attack3, Health3, Main_Attack)
     
 def main():
     st.title("Streamlit App")
