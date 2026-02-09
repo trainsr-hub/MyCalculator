@@ -144,7 +144,8 @@ def tab3():
         "Preondactylus lv1": (282, 171),
         "Compsognathus lv1": (249, 95),
         "Sinosauropteryx lv5": (583, 182),
-        "Rodrigues Solitaire lv10": (715, 224)
+        "Rodrigues Solitaire lv10": (715, 224),
+        "Tuojiangosaurus lv1": (42, 13)
     }
 
     # Selector lấy key của Rank, default là key đầu tiên
