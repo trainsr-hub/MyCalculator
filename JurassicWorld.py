@@ -41,7 +41,7 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
             0,
             y[mask1],
             color="red",
-            alpha=0.4
+            alpha=0.3
         )
 
         # Optimal_x/3 → Optimal_x/1.5 → CAM
@@ -76,7 +76,7 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
     # =========================
     # VÙNG RED (> C)
     # =========================
-    ax.fill_between(x, y, y_max, color="red", alpha=0.4)
+    ax.fill_between(x, y, y_max, color="red", alpha=0.3)
 
     # Đường phương trình
     ax.plot(x, y)
