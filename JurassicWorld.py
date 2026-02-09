@@ -159,6 +159,7 @@ def tab3():
         options=list(Flock.keys()),
         index=0
     )
+    st.markdown("---")
 
     # 2 number_input chia 2 cột cùng hàng
     col1, col2 = st.columns(2)
@@ -186,6 +187,7 @@ def tab3():
         "30px",
         bg_color="#fc6a03"
     )
+    st.code(f'3.2x + y = {int(max_Fero - Team_Fero - Health3 - Attack3 * 3.2)}')
     
 def main():
     st.title("Streamlit App")
