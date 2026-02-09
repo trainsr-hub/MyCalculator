@@ -18,14 +18,14 @@ def show_graph(C):
 
     fig, ax = plt.subplots()
 
-    # Vẽ đường thẳng
     ax.plot(x, y)
 
     # Tô đỏ phần phía trên đường thẳng
     ax.fill_between(
         x,
-        y,          # đường dưới
-        y_max,      # đường trên (giới hạn trục)
+        y,
+        y_max,
+        color="red",   # sửa lỗi màu mặc định thành đỏ
         alpha=0.3
     )
 
