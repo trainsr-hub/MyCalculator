@@ -176,7 +176,7 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
         )
 
     # Sửa indent chuẩn 4 spaces
-    if (C/3.2 < x2) and (y_point < y_max - 3.2 * x1) and C > 700:
+    if C > 700:
         ax.set_xlim(x1, x_max)
         ax.set_ylim(0, y_max - 3.2 * x1)
     else:
