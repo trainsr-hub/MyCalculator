@@ -14,17 +14,17 @@ background-color:#111;
 margin-top:15px;">
 
 <div style="margin-bottom:8px;">
-<span style="display:inline-block;width:15px;height:15px;background:blue;opacity:0.3;border-radius:3px;"></span>
+<span style="display:inline-block;width:15px;height:15px;background:blue;opacity:1;border-radius:3px;"></span>
 <b> Team 2</b> — Cân bằng nhưng không cân mọi kèo
 </div>
 
 <div style="margin-bottom:8px;">
-<span style="display:inline-block;width:15px;height:15px;background:green;opacity:0.4;border-radius:3px;"></span>
+<span style="display:inline-block;width:15px;height:15px;background:lime;opacity:1;border-radius:3px;"></span>
 <b> 1 Carry & 1 Support</b> — Cặp đôi hoàn hảo
 </div>
 
 <div style="margin-bottom:8px;">
-<span style="display:inline-block;width:15px;height:15px;background:orange;opacity:0.4;border-radius:3px;"></span>
+<span style="display:inline-block;width:15px;height:15px;background:orange;opacity:1;border-radius:3px;"></span>
 Damage thấp chỉ có tác dụng cảm tử với khắc hệ của Carry
 </div>
 
