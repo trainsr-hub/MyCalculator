@@ -324,7 +324,7 @@ def tab3():
 
     st.markdown("---")
 
-    Health3 = st.number_input("3rd Health", min_value=0, value=max(BasePower[selected_rank][0] - Main_Health, step=50)
+    Health3 = st.number_input("3rd Health", min_value=0, value=max(BasePower[selected_rank][0] - Main_Health,0), step=50)
     Attack3 = st.number_input("3rd Attack", min_value=0, value=max(BasePower[selected_rank][1] - Main_Attack, 0), step=25)
 
     show_boxed_text(
