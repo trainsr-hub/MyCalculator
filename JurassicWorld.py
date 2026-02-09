@@ -50,7 +50,7 @@ def show_graph(C, x_point=None, y_point=None):
         ax.scatter(x_point, y_intersect, zorder=6)
 
         ax.annotate(
-            f"Máu trâu\n({x_point}, {y_intersect})",
+            f"({x_point}, {y_intersect}) ~ Máu trâu",
             (x_point, y_intersect),
             xytext=(5, -15),
             textcoords="offset points"
