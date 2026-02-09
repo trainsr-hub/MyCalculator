@@ -3,36 +3,45 @@ from datetime import timedelta  # ← thêm dòng này để dùng timedelta
 import numpy as np
 import matplotlib.pyplot as plt
 
+
+
 def show_legend():
-    st.markdown("""
-    <div style="
-        border:1px solid #444;
-        padding:15px;
-        border-radius:10px;
-        background-color:#111;
-        margin-top:15px;
-    ">
-        <div style="margin-bottom:8px;">
-            <span style="display:inline-block;width:15px;height:15px;background:blue;opacity:0.3;border-radius:3px;"></span>
-            <b> Team 2</b> — Cân bằng nhưng không cân mọi kèo
-        </div>
 
-        <div style="margin-bottom:8px;">
-            <span style="display:inline-block;width:15px;height:15px;background:green;opacity:0.4;border-radius:3px;"></span>
-            <b> 1 Carry & 1 Support</b> — Cặp đôi hoàn hảo
-        </div>
+    html = """
+<div style="border:1px solid #444;
+            padding:15px;
+            border-radius:10px;
+            background-color:#111;
+            margin-top:15px;">
 
-        <div style="margin-bottom:8px;">
-            <span style="display:inline-block;width:15px;height:15px;background:orange;opacity:0.4;border-radius:3px;"></span>
-            Damage thấp chỉ có tác dụng cảm tử với khắc hệ của Carry
-        </div>
-
-        <div>
-            <span style="display:inline-block;width:15px;height:15px;background:gray;opacity:0.2;border-radius:3px;"></span>
-            Linh xe ôm
-        </div>
+    <div style="margin-bottom:8px;">
+        <span style="display:inline-block;width:15px;height:15px;
+                     background:blue;opacity:0.3;border-radius:3px;"></span>
+        <b> Team 2</b> — Cân bằng nhưng không cân mọi kèo
     </div>
-    """, unsafe_allow_html=True)
+
+    <div style="margin-bottom:8px;">
+        <span style="display:inline-block;width:15px;height:15px;
+                     background:green;opacity:0.4;border-radius:3px;"></span>
+        <b> 1 Carry & 1 Support</b> — Cặp đôi hoàn hảo
+    </div>
+
+    <div style="margin-bottom:8px;">
+        <span style="display:inline-block;width:15px;height:15px;
+                     background:orange;opacity:0.4;border-radius:3px;"></span>
+        Damage thấp chỉ có tác dụng cảm tử với khắc hệ của Carry
+    </div>
+
+    <div>
+        <span style="display:inline-block;width:15px;height:15px;
+                     background:gray;opacity:0.2;border-radius:3px;"></span>
+        Linh xe ôm
+    </div>
+
+</div>
+"""
+
+    st.markdown(html, unsafe_allow_html=True)
 
 def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
 
