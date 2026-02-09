@@ -27,40 +27,50 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
         # Giới hạn các mốc trong [0, x_max]
         x1 = max(0, min(x_max, Optimal_x / 3))
         x2 = max(0, min(x_max, Optimal_x / 1.5))
+        x3 = max(0, min(x_max, Optimal_x))
 
         # Mask từng đoạn
         mask1 = (x >= 0) & (x <= x1)
         mask2 = (x > x1) & (x <= x2)
-        mask3 = (x > x2) & (x <= x_max)
+        mask3 = (x > x2) & (x <= x3)
+        mask4 = (x > x3) & (x <= x_max)
 
-        # 0 → Optimal_x/3  → CAM
+        # 0 → Optimal_x/3  → RED
         ax.fill_between(
             x[mask1],
             0,
             y[mask1],
-            color="orange",
-            alpha=0.5
+            color="red",
+            alpha=0.4
         )
 
-        # Optimal_x/3 → Optimal_x/1.5 → giữ màu mặc định (xanh dương)
+        # Optimal_x/3 → Optimal_x/1.5 → CAM
         ax.fill_between(
             x[mask2],
             0,
             y[mask2],
-            alpha=0.3
+            color="orange",
+            alpha=0.5
         )
 
-        # Optimal_x/1.5 → x_max → XANH LÁ
+        # Optimal_x/1.5 → Optimal_x → MẶC ĐỊNH (xanh dương)
         ax.fill_between(
             x[mask3],
             0,
             y[mask3],
+            alpha=0.3
+        )
+
+        # Optimal_x → x_max → XANH LÁ
+        ax.fill_between(
+            x[mask4],
+            0,
+            y[mask4],
             color="green",
             alpha=0.4
         )
 
     else:
-        # Nếu không có Optimal_x thì giữ nguyên
         ax.fill_between(x, 0, y, alpha=0.3)
 
     # =========================
