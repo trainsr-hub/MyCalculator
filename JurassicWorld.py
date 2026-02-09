@@ -49,7 +49,7 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
             0,
             y[mask3],
             color="green",
-            alpha=0.3
+            alpha=0.4
         )
 
         # Optimal_x → x_max → XANH LÁ
@@ -57,7 +57,7 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
             x[mask4],
             0,
             y[mask4],
-            alpha=0.4
+            alpha=0.3
         )
 
     else:
