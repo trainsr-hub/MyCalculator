@@ -126,7 +126,7 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
         )
 
     # Sửa indent chuẩn 4 spaces
-    if Optimal_x is not None and x1 < x_max:
+    if Optimal_x is not None and x1 < x_max and y_max - 3.2 * x1 < y_max:
         ax.set_xlim(x1, x_max)
         ax.set_ylim(0, y_max - 3.2 * x1)
     else:
