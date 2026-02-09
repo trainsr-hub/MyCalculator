@@ -5,16 +5,29 @@ import matplotlib.pyplot as plt
 
 def show_graph(C):
 
-    # Tạo dữ liệu x
-    x = np.linspace(-10, 10, 100)
+    # Nếu C <= 0 thì không thể vẽ miền dương hợp lệ
+    if C <= 0:
+        st.warning("No positive solution region.")
+        return
 
-    # Chuyển phương trình về dạng y = C - 3.2x
+    # Tính giao điểm trục
+    x_max = C / 3.2   # khi y = 0
+    y_max = C         # khi x = 0
+
+    # Tạo dữ liệu x từ 0 → x_max
+    x = np.linspace(0, x_max, 100)
+
+    # y = C - 3.2x
     y = C - 3.2 * x
 
-    # Vẽ đồ thị
     fig, ax = plt.subplots()
     ax.plot(x, y)
-    ax.set_title(f"3.2x + y = {C}")
+
+    # Giới hạn trục
+    ax.set_xlim(0, x_max)
+    ax.set_ylim(0, y_max)
+
+    ax.set_title(f"3.2x + y = {int(C)}")
     ax.set_xlabel("x")
     ax.set_ylabel("y")
     ax.grid(True)
