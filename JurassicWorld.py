@@ -46,7 +46,7 @@ def show_graph(C, x_point=None, y_point=None):
         ax.axhline(y=y_point, linestyle="--")
 
         # 🔸 Giao với phương trình khi x = x_point
-        y_intersect = C - 3.2 * x_point
+        y_intersect = int(C - 3.2 * x_point)
         ax.scatter(x_point, y_intersect, zorder=6)
 
         ax.annotate(
@@ -57,7 +57,7 @@ def show_graph(C, x_point=None, y_point=None):
         )
 
         # 🔸 Giao với phương trình khi y = y_point
-        x_intersect = (C - y_point) / 3.2
+        x_intersect = int((C - y_point) / 3.2)
         ax.scatter(x_intersect, y_point, zorder=6)
 
         ax.annotate(
