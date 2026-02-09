@@ -31,10 +31,20 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
         x4 = max(0, min(x_max, Optimal_x * 1.5))
 
         # Mask từng đoạn
+        mask1 = (x > 0) & (x <= x1)
         mask2 = (x > x1) & (x <= x2)
         mask3 = (x > x2) & (x <= x3)
         mask4 = (x > x3) & (x <= x4)
         mask5 = (x > x4) & (x <= x_max)
+
+        ax.fill_between(
+            x[mask1],
+            0,
+            y[mask1],
+            color="green",
+            alpha=0.4
+        )
+
 
         ax.fill_between(
             x[mask2],
