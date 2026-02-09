@@ -30,19 +30,9 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
         x3 = max(0, min(x_max, Optimal_x))
 
         # Mask từng đoạn
-        mask1 = (x >= 0) & (x <= x1)
         mask2 = (x > x1) & (x <= x2)
         mask3 = (x > x2) & (x <= x3)
         mask4 = (x > x3) & (x <= x_max)
-
-        # 0 → Optimal_x/3  → RED
-        ax.fill_between(
-            x[mask1],
-            0,
-            y[mask1],
-            color="red",
-            alpha=0.3
-        )
 
         # Optimal_x/3 → Optimal_x/1.5 → CAM
         ax.fill_between(
@@ -121,7 +111,7 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
             textcoords="offset points"
         )
 
-    ax.set_xlim(0, x_max)
+    ax.set_xlim(x1, x_max)
     ax.set_ylim(0, y_max)
 
     ax.set_title(f"3.2x + y = {int(C)}")
