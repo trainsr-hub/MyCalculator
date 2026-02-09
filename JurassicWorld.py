@@ -255,7 +255,7 @@ def tab3():
     Team_Fero = int(Health +  Main_Health + 3.2 * Attack + 3.2 * Main_Attack)
     st.markdown("---")
     Health3 = st.number_input("3rd Health", min_value=0, value=0, step=50)
-    Attack3 = st.number_input("3rd Attack", min_value=int(Main_Attack/3), value=0, step=25)
+    Attack3 = st.number_input("3rd Attack", min_value=0, value=int(Main_Attack/3), step=25)
     
     show_boxed_text(
         "Remaining",
