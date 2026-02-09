@@ -157,7 +157,7 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
     ax.grid(True)
 
 
-# =========================
+    # =========================
     # LEGEND (Chú thích màu)
     # =========================
 
