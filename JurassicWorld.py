@@ -298,7 +298,7 @@ def tab3():
     max_Fero = Rank[selected_rank]
     Team_Fero = int(Health +  Main_Health + 3.2 * Attack + 3.2 * Main_Attack)
     st.markdown("---")
-    Health3 = st.number_input("3rd Health", min_value=0, value=0, step=50)
+    Health3 = st.number_input("3rd Health", min_value=0, value=350, step=50)
     Attack3 = st.number_input("3rd Attack", min_value=0, value=int(Main_Attack/1.5), step=25)
     
     show_boxed_text(
