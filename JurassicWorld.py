@@ -4,7 +4,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def show_graph(C):
+
+def show_graph(C, x_point=None, y_point=None):
 
     if C <= 0:
         st.warning("No positive solution region.")
@@ -18,15 +19,15 @@ def show_graph(C):
 
     fig, ax = plt.subplots()
 
-    # Vùng <= C (phía dưới đường thẳng) → xanh
+    # Vùng ≤ C (xanh mặc định)
     ax.fill_between(
         x,
-        0,          # đáy là trục x
-        y,          # lên tới đường thẳng
-        alpha=0.3   # giữ màu mặc định (xanh)
+        0,
+        y,
+        alpha=0.3
     )
 
-    # Vùng > C (phía trên đường thẳng) → đỏ
+    # Vùng > C (đỏ)
     ax.fill_between(
         x,
         y,
@@ -35,8 +36,22 @@ def show_graph(C):
         alpha=0.3
     )
 
-    # Vẽ đường thẳng
+    # Đường thẳng
     ax.plot(x, y)
+
+    # Nếu có truyền điểm vào thì hiển thị
+    if x_point is not None and y_point is not None:
+
+        # Vẽ điểm
+        ax.scatter(x_point, y_point, s=100, zorder=5)
+
+        # Hiển thị toạ độ cạnh điểm
+        ax.annotate(
+            f"({x_point}, {y_point})",
+            (x_point, y_point),
+            xytext=(5, 5),
+            textcoords="offset points"
+        )
 
     ax.set_xlim(0, x_max)
     ax.set_ylim(0, y_max)
@@ -47,7 +62,7 @@ def show_graph(C):
     ax.grid(True)
 
     st.pyplot(fig)
-
+    
 def show_boxed_text(
     label,
     value,
@@ -234,7 +249,7 @@ def tab3():
         "30px",
         bg_color="#fc6a03"
     )
-    show_graph(int(max_Fero - Team_Fero - Health3 - Attack3 * 3.2))
+    show_graph(int(max_Fero - Team_Fero), Attack3, Health3)
     
 def main():
     st.title("Streamlit App")
