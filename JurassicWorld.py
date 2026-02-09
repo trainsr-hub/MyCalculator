@@ -161,11 +161,10 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
     # =========================
 
     legend_elements = [
-        Patch(facecolor='blue', alpha=0.3, label='Team 2 - Cân bằng nhưng không cân mọi kèo'),
+        Patch(facecolor='blue', alpha=0.2, label='Team 2 - Cân bằng nhưng không cân mọi kèo'),
         Patch(facecolor='green', alpha=0.4, label='1 Carry & 1 Support - Cặp đôi hoàn hảo'),
-        Patch(facecolor='orange', alpha=0.4, label='Damage thấp - Khắc hệ & cảm tử'),
-        Patch(facecolor='gray', alpha=0.2, label='Linh xe ôm'),
-        Patch(facecolor='red', alpha=0.3, label='Dead Zone')
+        Patch(facecolor='orange', alpha=0.4, label='Damage thấp chỉ có tác dụng cảm tử với khắc hệ của Carry'),
+        Patch(facecolor='gray', alpha=0.2, label='Linh xe ôm')
     ]
 
     ax.legend(
