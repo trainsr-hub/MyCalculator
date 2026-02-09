@@ -327,7 +327,7 @@ def tab3():
 
     Rank = {
         "Dominator 2K5 ~ Tape": 7100,
-        "Dominator 1K5 ~ I-Rex": 6707
+        "Dominator 1K5 ~ I-Rex": 6722
     }
     BasePower = {
         "Dominator 2K5 ~ Tape": (3076, 972),
