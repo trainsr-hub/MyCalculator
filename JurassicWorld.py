@@ -156,9 +156,8 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
     ax.set_ylabel("HP")
     ax.grid(True)
 
-
-    # =========================
-    # LEGEND (Chú thích màu)
+# =========================
+    # LEGEND (Below chart)
     # =========================
 
     legend_elements = [
@@ -171,11 +170,13 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
 
     ax.legend(
         handles=legend_elements,
-        loc='upper right',
-        fontsize=9,
-        framealpha=0.9
+        loc='upper center',
+        bbox_to_anchor=(0.5, -0.15),  # đẩy xuống dưới
+        ncol=2,                      # chia 2 cột cho gọn
+        frameon=True
     )
 
+    plt.tight_layout()
 
     st.pyplot(fig)
 
