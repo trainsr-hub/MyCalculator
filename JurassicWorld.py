@@ -50,7 +50,7 @@ def show_graph(C, x_point=None, y_point=None):
         ax.scatter(x_point, y_intersect, zorder=6)
 
         ax.annotate(
-            f"({x_point}, {y_intersect})",
+            f"Máu trâu\n({x_point}, {y_intersect})",
             (x_point, y_intersect),
             xytext=(5, -15),
             textcoords="offset points"
@@ -61,7 +61,7 @@ def show_graph(C, x_point=None, y_point=None):
         ax.scatter(x_intersect, y_point, zorder=6)
 
         ax.annotate(
-            f"({x_intersect}, {y_point})",
+            f"Damage to\n({x_intersect}, {y_point})",
             (x_intersect, y_point),
             xytext=(5, 5),
             textcoords="offset points"
