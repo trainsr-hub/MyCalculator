@@ -18,16 +18,25 @@ def show_graph(C):
 
     fig, ax = plt.subplots()
 
-    ax.plot(x, y)
+    # Vùng <= C (phía dưới đường thẳng) → xanh
+    ax.fill_between(
+        x,
+        0,          # đáy là trục x
+        y,          # lên tới đường thẳng
+        alpha=0.3   # giữ màu mặc định (xanh)
+    )
 
-    # Tô đỏ phần phía trên đường thẳng
+    # Vùng > C (phía trên đường thẳng) → đỏ
     ax.fill_between(
         x,
         y,
         y_max,
-        color="red",   # sửa lỗi màu mặc định thành đỏ
+        color="red",
         alpha=0.3
     )
+
+    # Vẽ đường thẳng
+    ax.plot(x, y)
 
     ax.set_xlim(0, x_max)
     ax.set_ylim(0, y_max)
