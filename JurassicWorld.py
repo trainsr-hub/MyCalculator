@@ -171,7 +171,7 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
         handles=legend_elements,
         loc='upper center',
         bbox_to_anchor=(0.5, -0.15),  # đẩy xuống dưới
-        ncol=2,                      # chia 2 cột cho gọn
+        ncol=1,                      # chia 2 cột cho gọn
         frameon=True
     )
 
