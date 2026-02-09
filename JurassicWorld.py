@@ -321,20 +321,21 @@ def tab3():
 
     max_Fero = Rank[selected_rank]
     Team_Fero = int(Health + Main_Health + 3.2 * Attack + 3.2 * Main_Attack)
+    remain_Fero = max_Fero - Team_Fero
 
     st.markdown("---")
 
-    Health3 = st.number_input("3rd Health", min_value=0, value=500, step=50)
-    Attack3 = st.number_input("3rd Attack", min_value=0, value=300, step=25)
+    Health3 = st.number_input("3rd Health", min_value=0, value=int(remain_Fero/3), step=50)
+    Attack3 = st.number_input("3rd Attack", min_value=0, value=int(remain_Fero/9.6), step=25)
 
     show_boxed_text(
         "Remaining",
-        f"{int(max_Fero - Team_Fero - Health3 - Attack3 * 3.2)}",
+        f"{int(remain_Fero - Health3 - Attack3 * 3.2)}",
         "30px",
         bg_color="#fc6a03"
     )
 
-    show_graph(int(max_Fero - Team_Fero), Attack3, Health3, Main_Attack)
+    show_graph(int(remain_Fero), Attack3, Health3, Main_Attack)
 
 
 def main():
