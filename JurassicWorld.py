@@ -376,7 +376,7 @@ def tab3():
     st.markdown("---")
 
     Health3 = st.number_input("3rd Health", min_value=0, value=int(remain_Fero/4.5), step=50)
-    Attack3 = st.number_input("3rd Attack", min_value=0, value=int(remain_Fero/16), step=10)
+    Attack3 = st.number_input("3rd Attack", min_value=0, value=400/1.5, step=10)
 
     show_boxed_text(
         "Remaining",
