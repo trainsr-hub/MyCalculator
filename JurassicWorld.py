@@ -140,11 +140,22 @@ def tab3():
         "Dominator 2K5 ~ Tape": 7100,
         "Dominator 1K5 ~ I-Rex": 6500
     }
+    Flock = {
+        "Preondactylus lv1": (282, 171),
+        "Compsognathus lv1": (249, 95),
+        "Sinosauropteryx lv5": (583, 182),
+        "Rodrigues Solitaire lv10": (715, 224)
+    }
 
     # Selector lấy key của Rank, default là key đầu tiên
     selected_rank = st.selectbox(
         "Rank",
         options=list(Rank.keys()),
+        index=0
+    )
+    selected_flock = st.selectbox(
+        "Flock",
+        options=list(Flock.keys()),
         index=0
     )
 
@@ -153,10 +164,10 @@ def tab3():
  
 
     with col1:
-        Health = st.number_input("Flock Health", min_value=0, value=0, step=50)
+        Health = st.number_input("Flock Health", min_value=0, value=Flock[selected_flock][0], step=50)
 
     with col2:
-        Attack = st.number_input("Flock Attack", min_value=0, value=0, step=25)
+        Attack = st.number_input("Flock Attack", min_value=0, value=Flock[selected_flock][1], step=25)
      
     st.markdown("---")
     Main_Health = st.number_input("Ace Health", min_value=0, value=0, step=50)
