@@ -366,8 +366,8 @@ def tab3():
 
     st.markdown("---")
 
-    Main_Health = st.number_input("Ace Health", min_value=0, value=1170, step=50)
-    Main_Attack = st.number_input("Ace Attack", min_value=0, value=404, step=25)
+    Main_Health = st.number_input("Ace Health", min_value=0, value=0, step=50)
+    Main_Attack = st.number_input("Ace Attack", min_value=0, value=0, step=25)
 
     max_Fero = Rank[selected_rank]
     Team_Fero = int(Health + Main_Health + 3.2 * Attack + 3.2 * Main_Attack)
@@ -376,7 +376,7 @@ def tab3():
     st.markdown("---")
 
     Health3 = st.number_input("3rd Health", min_value=0, value=int(remain_Fero/4.5), step=50)
-    Attack3 = st.number_input("3rd Attack", min_value=0, value=int(max(400/1.5, remain_Fero/13)), step=10)
+    Attack3 = st.number_input("3rd Attack", min_value=0, value=int(max(400/1.5, remain_Fero/8)), step=15)
 
     show_boxed_text(
         "Remaining",
