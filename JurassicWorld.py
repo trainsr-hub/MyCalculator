@@ -1,6 +1,26 @@
 import streamlit as st
 from datetime import timedelta  # ← thêm dòng này để dùng timedelta
+import numpy as np
+import matplotlib.pyplot as plt
 
+def show_graph(C):
+
+    # Tạo dữ liệu x
+    x = np.linspace(-10, 10, 100)
+
+    # Chuyển phương trình về dạng y = C - 3.2x
+    y = C - 3.2 * x
+
+    # Vẽ đồ thị
+    fig, ax = plt.subplots()
+    ax.plot(x, y)
+    ax.set_title(f"3.2x + y = {C}")
+    ax.set_xlabel("x")
+    ax.set_ylabel("y")
+    ax.grid(True)
+
+    st.pyplot(fig)
+    
 def show_boxed_text(
     label,
     value,
@@ -187,7 +207,7 @@ def tab3():
         "30px",
         bg_color="#fc6a03"
     )
-    st.code(f'3.2x + y = {int(max_Fero - Team_Fero - Health3 - Attack3 * 3.2)}')
+    show_graph(max_Fero - Team_Fero - Health3 - Attack3 * 3.2)
     
 def main():
     st.title("Streamlit App")
