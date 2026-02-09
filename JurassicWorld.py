@@ -71,8 +71,8 @@ def show_graph(C, x_point=None, y_point=None):
     ax.set_ylim(0, y_max)
 
     ax.set_title(f"3.2x + y = {int(C)}")
-    ax.set_xlabel("x")
-    ax.set_ylabel("y")
+    ax.set_xlabel("ATK")
+    ax.set_ylabel("Health")
     ax.grid(True)
 
     st.pyplot(fig)
