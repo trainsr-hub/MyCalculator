@@ -133,7 +133,7 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
     # =========================
     # VÙNG RED (> C)
     # =========================
-    ax.fill_between(x, y, y_max, color="red", alpha=0.2)
+    ax.fill_between(x, y, y_max, color="red", alpha=0.4)
 
     ax.plot(x, y)
 
