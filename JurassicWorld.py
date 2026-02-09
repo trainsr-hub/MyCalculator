@@ -50,7 +50,7 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
             0,
             y[mask2],
             color="orange",
-            alpha=0.5
+            alpha=0.3
         )
 
         # Optimal_x/1.5 → Optimal_x → MẶC ĐỊNH (xanh dương)
@@ -58,7 +58,7 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
             x[mask3],
             0,
             y[mask3],
-            alpha=0.3
+            alpha=0.4
         )
 
         # Optimal_x → x_max → XANH LÁ
