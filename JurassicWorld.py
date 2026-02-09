@@ -130,8 +130,8 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
         ax.set_xlim(x1, x_max)
         ax.set_ylim(0, y_max - 3.2 * x1)
     else:
-        ax.set_xlim(0, x_max)
-        ax.set_ylim(0, y_max)
+        ax.set_xlim(0, Optimal_x)
+        ax.set_ylim(0, Optimal_x * 3.2)
 
     ax.set_title(f"3.2x + y = {int(C)}")
     ax.set_xlabel("ATK")
