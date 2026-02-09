@@ -27,7 +27,7 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
         # Giới hạn các mốc trong [0, x_max]
         x1 = max(0, min(x_max, Optimal_x / 2))
         x2 = max(0, min(x_max, Optimal_x / 1.5))
-        x3 = max(0, min(x_max, Optimal_x))
+        x3 = max(0, min(x_max, Optimal_x / 1.1))
         x4 = max(0, min(x_max, Optimal_x * 1.5))
 
         # Mask từng đoạn
