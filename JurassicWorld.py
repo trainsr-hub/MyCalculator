@@ -27,15 +27,17 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
         # Giới hạn các mốc trong [0, x_max]
         x1 = max(0, min(x_max, Optimal_x / 2))
         x2 = max(0, min(x_max, Optimal_x / 1.5))
-        x3 = max(0, min(x_max, Optimal_x / 1.15))
-        x4 = max(0, min(x_max, Optimal_x * 1.15))
+        x3 = max(0, min(x_max, Optimal_x / 1.13))
+        x4 = max(0, min(x_max, Optimal_x * 1.13))
+        x5 = max(0, min(x_max, Optimal_x * 1.5))
 
         # Mask từng đoạn
         mask1 = (x > 0) & (x <= x1)
         mask2 = (x > x1) & (x <= x2)
         mask3 = (x > x2) & (x <= x3)
         mask4 = (x > x3) & (x <= x4)
-        mask5 = (x > x4) & (x <= x_max)
+        mask5 = (x > x4) & (x <= x5)
+        mask6 = (x > x5) & (x <= x_max)
 
         ax.fill_between(
             x[mask1],
