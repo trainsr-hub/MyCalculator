@@ -228,7 +228,7 @@ def tab3():
     selected_rank = st.selectbox(
         "Rank",
         options=list(Rank.keys()),
-        index=0
+        index=1
     )
     selected_flock = st.selectbox(
         "Flock",
