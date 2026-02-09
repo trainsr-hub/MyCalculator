@@ -3,27 +3,32 @@ from datetime import timedelta  # ← thêm dòng này để dùng timedelta
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 def show_graph(C):
 
-    # Nếu C <= 0 thì không thể vẽ miền dương hợp lệ
     if C <= 0:
         st.warning("No positive solution region.")
         return
 
-    # Tính giao điểm trục
-    x_max = C / 3.2   # khi y = 0
-    y_max = C         # khi x = 0
+    x_max = C / 3.2
+    y_max = C
 
-    # Tạo dữ liệu x từ 0 → x_max
-    x = np.linspace(0, x_max, 100)
-
-    # y = C - 3.2x
+    x = np.linspace(0, x_max, 300)
     y = C - 3.2 * x
 
     fig, ax = plt.subplots()
+
+    # Vẽ đường thẳng
     ax.plot(x, y)
 
-    # Giới hạn trục
+    # Tô đỏ phần phía trên đường thẳng
+    ax.fill_between(
+        x,
+        y,          # đường dưới
+        y_max,      # đường trên (giới hạn trục)
+        alpha=0.3
+    )
+
     ax.set_xlim(0, x_max)
     ax.set_ylim(0, y_max)
 
@@ -33,7 +38,7 @@ def show_graph(C):
     ax.grid(True)
 
     st.pyplot(fig)
-    
+
 def show_boxed_text(
     label,
     value,
@@ -220,7 +225,7 @@ def tab3():
         "30px",
         bg_color="#fc6a03"
     )
-    show_graph(max_Fero - Team_Fero - Health3 - Attack3 * 3.2)
+    show_graph(int(max_Fero - Team_Fero - Health3 - Attack3 * 3.2))
     
 def main():
     st.title("Streamlit App")
