@@ -30,6 +30,7 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
         x3 = max(0, min(x_max, Optimal_x / 1.13))
         x4 = max(0, min(x_max, Optimal_x * 1.13))
         x5 = max(0, min(x_max, Optimal_x * 1.5))
+        x6 = max(0, min(x_max, Optimal_x * 2))
 
         # Mask từng đoạn
         mask1 = (x > 0) & (x <= x1)
@@ -37,7 +38,8 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
         mask3 = (x > x2) & (x <= x3)
         mask4 = (x > x3) & (x <= x4)
         mask5 = (x > x4) & (x <= x5)
-        mask6 = (x > x5) & (x <= x_max)
+        mask6 = (x > x5) & (x <= x6)
+        mask7 = (x > x6) & (x <= x_max)
 
         ax.fill_between(
             x[mask1],
@@ -84,6 +86,13 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
             y[mask6],
             color="orange",
             alpha=0.4
+        )
+        ax.fill_between(
+            x[mask7],
+            0,
+            y[mask7],
+            color="gray",
+            alpha=0.2
         )
     else:
         ax.fill_between(x, 0, y, alpha=0.3)
