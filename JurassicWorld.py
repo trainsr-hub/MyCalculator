@@ -2,8 +2,6 @@ import streamlit as st
 from datetime import timedelta  # ← thêm dòng này để dùng timedelta
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.patches import Patch
-
 
 def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
 
@@ -155,27 +153,6 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
     ax.set_xlabel("ATK")
     ax.set_ylabel("HP")
     ax.grid(True)
-
-# =========================
-    # LEGEND (Below chart)
-    # =========================
-
-    legend_elements = [
-        Patch(facecolor='blue', alpha=0.2, label='Team 2 - Cân bằng nhưng không cân mọi kèo'),
-        Patch(facecolor='green', alpha=0.4, label='1 Carry & 1 Support - Cặp đôi hoàn hảo'),
-        Patch(facecolor='orange', alpha=0.4, label='Damage thấp chỉ có tác dụng cảm tử với khắc hệ của Carry'),
-        Patch(facecolor='gray', alpha=0.2, label='Linh xe ôm')
-    ]
-
-    ax.legend(
-        handles=legend_elements,
-        loc='upper center',
-        bbox_to_anchor=(0.5, -0.15),  # đẩy xuống dưới
-        ncol=1,                      # chia 2 cột cho gọn
-        frameon=True
-    )
-
-    plt.tight_layout()
 
     st.pyplot(fig)
 
