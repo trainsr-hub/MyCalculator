@@ -29,7 +29,7 @@ Damage thấp chỉ có tác dụng cảm tử với khắc hệ của Carry
 </div>
 
 <div>
-<span style="display:inline-block;width:15px;height:15px;background:gray;opacity:0.2;border-radius:3px;"></span>
+<span style="display:inline-block;width:15px;height:15px;background:white;opacity:0.2;border-radius:3px;"></span>
 Linh xe ôm
 </div>
 
@@ -133,7 +133,7 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
     # =========================
     # VÙNG RED (> C)
     # =========================
-    ax.fill_between(x, y, y_max, color="purple", alpha=0.7)
+    ax.fill_between(x, y, y_max, color="red", alpha=0.7)
 
     ax.plot(x, y)
 
