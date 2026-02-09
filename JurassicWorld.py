@@ -48,6 +48,7 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
             x[mask3],
             0,
             y[mask3],
+            color="green",
             alpha=0.3
         )
 
@@ -56,7 +57,6 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
             x[mask4],
             0,
             y[mask4],
-            color="green",
             alpha=0.4
         )
 
