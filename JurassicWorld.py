@@ -10,8 +10,8 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
         st.warning("No positive solution region.")
         return
 
-    x_max = max(C / 3.2, x_point)
-    y_max = max(C, y_point)
+    x_max = max(C / 3.2, x_point + 25)
+    y_max = max(C, y_point + 100)
 
     x = np.linspace(0, x_max, 400)
     y = C - 3.2 * x
