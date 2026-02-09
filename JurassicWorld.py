@@ -42,7 +42,7 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
             0,
             y[mask1],
             color="gray",
-            alpha=0.4
+            alpha=0.2
         )
 
 
