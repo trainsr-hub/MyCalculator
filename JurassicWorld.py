@@ -72,7 +72,7 @@ def show_graph(C, x_point=None, y_point=None):
 
     ax.set_title(f"3.2x + y = {int(C)}")
     ax.set_xlabel("ATK")
-    ax.set_ylabel("Health")
+    ax.set_ylabel("HP")
     ax.grid(True)
 
     st.pyplot(fig)
