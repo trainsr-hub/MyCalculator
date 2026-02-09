@@ -3,8 +3,6 @@ from datetime import timedelta  # ← thêm dòng này để dùng timedelta
 import numpy as np
 import matplotlib.pyplot as plt
 
-
-
 def show_graph(C, x_point=None, y_point=None):
 
     if C <= 0:
@@ -14,41 +12,57 @@ def show_graph(C, x_point=None, y_point=None):
     x_max = C / 3.2
     y_max = C
 
-    x = np.linspace(0, x_max, 300)
+    x = np.linspace(0, x_max, 400)
     y = C - 3.2 * x
 
     fig, ax = plt.subplots()
 
-    # Vùng ≤ C (xanh mặc định)
-    ax.fill_between(
-        x,
-        0,
-        y,
-        alpha=0.3
-    )
+    # Vùng ≤ C
+    ax.fill_between(x, 0, y, alpha=0.3)
 
-    # Vùng > C (đỏ)
-    ax.fill_between(
-        x,
-        y,
-        y_max,
-        color="red",
-        alpha=0.3
-    )
+    # Vùng > C
+    ax.fill_between(x, y, y_max, color="red", alpha=0.3)
 
-    # Đường thẳng
+    # Đường phương trình
     ax.plot(x, y)
 
-    # Nếu có truyền điểm vào thì hiển thị
     if x_point is not None and y_point is not None:
 
-        # Vẽ điểm
+        # Điểm chính
         ax.scatter(x_point, y_point, s=100, zorder=5)
 
-        # Hiển thị toạ độ cạnh điểm
+        # Hiển thị tọa độ điểm chính
         ax.annotate(
             f"({x_point}, {y_point})",
             (x_point, y_point),
+            xytext=(5, 5),
+            textcoords="offset points"
+        )
+
+        # 🔹 Đường gióng x = x_point
+        ax.axvline(x=x_point, linestyle="--")
+
+        # 🔹 Đường gióng y = y_point
+        ax.axhline(y=y_point, linestyle="--")
+
+        # 🔸 Giao với phương trình khi x = x_point
+        y_intersect = C - 3.2 * x_point
+        ax.scatter(x_point, y_intersect, zorder=6)
+
+        ax.annotate(
+            f"({x_point:.1f}, {y_intersect:.1f})",
+            (x_point, y_intersect),
+            xytext=(5, -15),
+            textcoords="offset points"
+        )
+
+        # 🔸 Giao với phương trình khi y = y_point
+        x_intersect = (C - y_point) / 3.2
+        ax.scatter(x_intersect, y_point, zorder=6)
+
+        ax.annotate(
+            f"({x_intersect:.1f}, {y_point:.1f})",
+            (x_intersect, y_point),
             xytext=(5, 5),
             textcoords="offset points"
         )
