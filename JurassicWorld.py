@@ -47,7 +47,7 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
     real_x = C / (1 + 3.2)
     real_minx = C / (10 + 3.2)
     y_max = max(C, y_point)
-    y_max_real = y_max - real_minx
+    y_max_real = y_max - real_minx * 3.2
   
     x = np.linspace(0, x_max, 400)  
     y = C - 3.2 * x  
@@ -380,8 +380,8 @@ def tab3():
   
     st.markdown("---")  
   
-    Health3 = st.number_input("3rd Health", min_value=0, value=int(remain_Fero/4), step=50)  
-    Attack3 = st.number_input("3rd Attack", min_value=0, value=int(remain_Fero/7), step=15)  
+    Health3 = st.number_input("3rd Health", min_value=0, value=int(remain_Fero/3), step=50)  
+    Attack3 = st.number_input("3rd Attack", min_value=0, value=int(remain_Fero/9), step=15)  
   
     show_boxed_text(  
         "Remaining",  
