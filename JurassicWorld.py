@@ -283,7 +283,7 @@ def format_duration(td):
 
 
 def tab1hatchingtime():
-
+    global Time_Now
     duration = select_duration(3, "hatchingtime")
 
     if duration != timedelta(0):
@@ -306,8 +306,8 @@ def tab1hatchingtime():
     show_boxed_text("Free", format_duration(Free_Time), "30px", bg_color="#008000")
 
     # Tính thời điểm hoàn thành nếu bắt đầu Timer ngay bây giờ
-    finish_time = datetime.now() + Timer
-    finish_at = finish_time.strftime("%H:%M") + (finish_time.strftime(" %d") if finish_time.day != datetime.now().day else "") + (finish_time.strftime("/%m") if finish_time.month != datetime.now().month else "")
+    finish_time = Time_Now + Timer
+    finish_at = finish_time.strftime("%H:%M") + (finish_time.strftime(" %d") if finish_time.day != Time_Now.day else "") + (finish_time.strftime("/%m") if finish_time.month != Time_Now.month else "")
     st.code(finish_at)
 
 
