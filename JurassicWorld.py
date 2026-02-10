@@ -149,12 +149,13 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
     else:  
         ax.fill_between(x, 0, y, alpha=0.3)  
   
+    ax.plot([400, 400], [0, C - 3.2 * 400]) 
     # =========================  
     # VÙNG RED (> C)  
     # =========================  
     ax.fill_between(x, y, y_max, color="red", alpha=0.4)  
   
-    ax.plot(x, y)  
+    ax.plot(x, y)
   
     # =========================  
     # PHẦN ĐIỂM & GIAO  
