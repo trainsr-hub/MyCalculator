@@ -148,7 +148,7 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
         )  
     else:  
         ax.fill_between(x, 0, y, alpha=0.3)  
-    if x_max > 400: ax.fill_between(x[x <= 400], 0, y[x <= 400], hatch='/', facecolor='none', edgecolor='black')  # add "/" hatch for non-red region from 0→400
+    if real_x > 400: ax.fill_between(x[x <= 400], 0, y[x <= 400], hatch='/', facecolor='none', edgecolor='black')  # add "/" hatch for non-red region from 0→400
     ax.plot([400, 400], [0, C - 3.2 * 400])
     # =========================  
     # VÙNG RED (> C)  
