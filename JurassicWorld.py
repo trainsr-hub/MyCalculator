@@ -113,7 +113,7 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
             x[mask5],  
             0,  
             y[mask5],  
-            color="orange",  
+            color="yellow",  
             alpha=1
         )  
         ax.fill_between(  
