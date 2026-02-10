@@ -305,6 +305,16 @@ def tab1hatchingtime():
 
     show_boxed_text("Free", format_duration(Free_Time), "30px", bg_color="#008000")
 
+    # Tính thời điểm hoàn thành nếu bắt đầu Timer ngay bây giờ
+    finish_time = datetime.now() + Timer  # current time + Timer
+
+    show_boxed_text(
+        "Finish At",
+        finish_time.strftime("%d/%m %H:%M:%S"),  # format ngày + giờ
+        "30px",
+        bg_color="#ff8800"
+    )
+
 
 def tab2():
 
