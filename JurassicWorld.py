@@ -130,6 +130,47 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
     else:
         ax.fill_between(x, 0, y, alpha=0.3)
 
+
+# =========================
+    # HATCH OVERLAY ("/")
+    # =========================
+
+    # --- Tính mốc x theo phương trình ---
+    x_a = C / (8 + 3.2)      # x = y/8
+    x_b = C / (1.07 + 3.2)   # x = y/1.07
+
+    # Giới hạn trong khoảng hiển thị
+    x_a = max(0, min(x_max, x_a))
+    x_b = max(0, min(x_max, x_b))
+
+    # Mask đoạn 1: từ 0 → x_a
+    mask_h1 = (x >= 0) & (x <= x_a)
+
+    # Mask đoạn 2: từ x_b → x_max
+    mask_h2 = (x >= x_b) & (x <= x_max)
+
+    # --- Vẽ hatch độc lập (đè lên màu) ---
+    ax.fill_between(
+        x[mask_h1],
+        0,
+        y[mask_h1],
+        facecolor="none",     # không thêm màu
+        hatch="/",            # gạch chéo phải
+        edgecolor="black",    # màu gạch
+        linewidth=0,
+        zorder=10             # đảm bảo nằm trên tất cả vùng màu
+    )
+
+    ax.fill_between(
+        x[mask_h2],
+        0,
+        y[mask_h2],
+        facecolor="none",
+        hatch="/",
+        edgecolor="black",
+        linewidth=0,
+        zorder=10
+    )
     # =========================
     # VÙNG RED (> C)
     # =========================
