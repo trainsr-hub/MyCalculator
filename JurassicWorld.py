@@ -80,8 +80,8 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
             x[mask1],  
             0,  
             y[mask1],  
-            color="gray",  
-            alpha=0.6  
+            color="purple",  
+            alpha=1
         )  
   
   
@@ -89,8 +89,8 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
             x[mask2],  
             0,  
             y[mask2],  
-            color="orange",  
-            alpha=1  
+            color="purple",  
+            alpha=0.8
         )  
   
         ax.fill_between(  
@@ -105,6 +105,7 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
             x[mask4],  
             0,  
             y[mask4],  
+            color="blue"
             alpha=1  
         )  
   
@@ -112,8 +113,8 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
             x[mask5],  
             0,  
             y[mask5],  
-            color="lime",  
-            alpha=1  
+            color="green",  
+            alpha=0.8  
         )  
         ax.fill_between(  
             x[mask6],  
@@ -127,7 +128,7 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
             0,  
             y[mask7],  
             color="gray",  
-            alpha=0.6  
+            alpha=0.6
         )  
     else:  
         ax.fill_between(x, 0, y, alpha=0.3)  
