@@ -19,18 +19,28 @@ Linh xe ôm
 </div>  
 
 <div style="margin-bottom:8px;">  
+<span style="display:inline-block;width:15px;height:15px;background:red;opacity:1;border-radius:3px;"></span>  
+<b> Carry & Cảm Tử</b> - Carry
+</div>
+
+<div style="margin-bottom:8px;">  
 <span style="display:inline-block;width:15px;height:15px;background:blue;opacity:1;border-radius:3px;"></span>  
-<b> 1 Carry & 1 Support</b> — Cặp đôi hoàn hảo
+<b> Cặp đôi hoàn hảo</b> — Carry
 </div>  
   
 <div style="margin-bottom:8px;">  
 <span style="display:inline-block;width:15px;height:15px;background:green;opacity:1;border-radius:3px;"></span>  
 <b> Team 2</b> — Cân bằng nhưng không cân mọi kèo  
 </div>  
-  
+
 <div style="margin-bottom:8px;">  
 <span style="display:inline-block;width:15px;height:15px;background:yellow;opacity:1;border-radius:3px;"></span>  
-Damage thấp chỉ có tác dụng cảm tử với khắc hệ của Carry  
+<b> Cặp đôi hoàn hảo</b> — Support
+</div>  
+  
+<div style="margin-bottom:8px;">  
+<span style="display:inline-block;width:15px;height:15px;background:red;opacity:1;border-radius:3px;"></span>  
+<b> Carry & Cảm Tử</b> - Cảm Tử
 </div>  
   
 </div>"""  
