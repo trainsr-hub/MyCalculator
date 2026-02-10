@@ -46,7 +46,8 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
     x_max = max(C / 3.2, x_point + 25)  
     real_x = C / (1 + 3.2)
     real_minx = C / (10 + 3.2)
-    y_max = max(C, y_point)  
+    y_max = max(C, y_point)
+    y_max_real = y_max - real_minx
   
     x = np.linspace(0, x_max, 400)  
     y = C - 3.2 * x  
@@ -179,7 +180,7 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
         )  
  
     ax.set_xlim(min(y_max, real_minx), real_x)  
-    ax.set_ylim(min(y_max, real_minx), y_max) 
+    ax.set_ylim(min(y_max, real_minx), y_max_real) 
   
     ax.set_title(f"3.2x + y = {int(C)}")  
     ax.set_xlabel("ATK")  
