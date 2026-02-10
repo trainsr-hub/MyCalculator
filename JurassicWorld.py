@@ -15,7 +15,7 @@ margin-top:15px;">
 
 <div>  
 <span style="display:inline-block;width:15px;height:15px;background:#00ffff;opacity:1;border-radius:3px;"></span>  
-<b> Một mình tao chấp hết</b> - Linh xe ôm  
+<b> Linh xe ôm</b>
 </div>  
 
 <div style="margin-bottom:8px;">  
