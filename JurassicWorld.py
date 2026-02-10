@@ -19,7 +19,7 @@ Linh xe ôm
 </div>  
 
 <div style="margin-bottom:8px;">  
-<span style="display:inline-block;width:15px;height:15px;background:red;opacity:1;border-radius:3px;"></span>  
+<span style="display:inline-block;width:15px;height:15px;background:purple;opacity:1;border-radius:3px;"></span>  
 <b> Carry & Cảm Tử</b> - Carry
 </div>
 
@@ -29,7 +29,7 @@ Linh xe ôm
 </div>  
   
 <div style="margin-bottom:8px;">  
-<span style="display:inline-block;width:15px;height:15px;background:green;opacity:1;border-radius:3px;"></span>  
+<span style="display:inline-block;width:15px;height:15px;background:lime;opacity:1;border-radius:3px;"></span>  
 <b> Team 2</b> — Cân bằng nhưng không cân mọi kèo  
 </div>  
 
