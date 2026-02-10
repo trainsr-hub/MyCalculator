@@ -15,7 +15,7 @@ margin-top:15px;">
 
 <div>  
 <span style="display:inline-block;width:15px;height:15px;background:#00ffff;opacity:1;border-radius:3px;"></span>  
-Linh xe ôm  
+<b> Một mình tao chấp hết</b> - Linh xe ôm  
 </div>  
 
 <div style="margin-bottom:8px;">  
@@ -41,6 +41,11 @@ Linh xe ôm
 <div style="margin-bottom:8px;">  
 <span style="display:inline-block;width:15px;height:15px;background:red;opacity:1;border-radius:3px;"></span>  
 <b> Carry & Cảm Tử</b> - Cảm Tử
+</div>  
+
+<div style="margin-bottom:8px;">  
+<span style="display:inline-block;width:15px;height:15px;background:blue;opacity:1;border-radius:3px;"></span>  
+Đồng nát
 </div>  
   
 </div>"""  
