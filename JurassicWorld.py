@@ -121,15 +121,15 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
             x[mask6],  
             0,  
             y[mask6],  
-            color="red",  
+            color="orange",  
             alpha=1  
         )  
         ax.fill_between(  
             x[mask7],  
             0,  
             y[mask7],  
-            color="gray",  
-            alpha=0.6
+            color="red",  
+            alpha=1
         )  
     else:  
         ax.fill_between(x, 0, y, alpha=0.3)  
