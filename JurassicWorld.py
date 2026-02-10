@@ -149,6 +149,16 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
     else:  
         ax.fill_between(x, 0, y, alpha=0.3)  
   
+
+
+# y = n * 1000 trong vùng non-red
+    for y_line in range(1000, int(y_max_real), 1000):
+        x_limit = (C - y_line) / 3.2
+        if x_limit <= 0:
+            continue  # không còn phần thuộc vùng non-red
+
+        x_line = np.linspace(0, min(x_limit, x_max), 100)
+        ax.plot(x_line, np.full_like(x_line, y_line), linestyle="--", linewidth=1)
     # =========================  
     # VÙNG RED (> C)  
     # =========================  
