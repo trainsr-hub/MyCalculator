@@ -90,7 +90,7 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
             0,  
             y[mask2],  
             color="purple",  
-            alpha=0.8
+            alpha=0.7
         )  
   
         ax.fill_between(  
@@ -178,13 +178,9 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
             textcoords="offset points"  
         )  
   
-    # Sửa indent chuẩn 4 spaces  
-    if C > 700:  
-        ax.set_xlim(max(400/1.5, real_minx), real_x)  
-        ax.set_ylim(max(400/1.5, real_minx), y_max - 3.2 * x1)  
-    else:  
-        ax.set_xlim(0, max(x_max, x_point))  
-        ax.set_ylim(0, max(y_max, y_point))  
+    # Sửa indent chuẩn 4 spaces
+    ax.set_xlim(min(y_max, max(400/1.5, real_minx)), real_x)  
+    ax.set_ylim(min(y_max, max(400/1.5, real_minx)), y_max) 
   
     ax.set_title(f"3.2x + y = {int(C)}")  
     ax.set_xlabel("ATK")  
