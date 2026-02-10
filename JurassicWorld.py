@@ -80,7 +80,7 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
             x[mask1],  
             0,  
             y[mask1],  
-            color="white",  
+            color="#00ffff",  
             alpha=1
         )  
   
