@@ -158,7 +158,7 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
             continue  # không còn phần thuộc vùng non-red
 
         x_line = np.linspace(0, min(x_limit, x_max), 100)
-        ax.plot(x_line, np.full_like(x_line, y_line), linestyle="--", linewidth=1)
+        ax.plot(x_line, np.full_like(x_line, y_line), linestyle="-", linewidth=1)
     # =========================  
     # VÙNG RED (> C)  
     # =========================  
