@@ -19,24 +19,24 @@ margin-top:15px;">
 </div>  
 
 <div style="margin-bottom:8px;">  
-<span style="display:inline-block;width:15px;height:15px;background:purple;opacity:1;border-radius:3px;"></span>  
-<b> Carry & Cảm Tử</b> - Carry
-</div>
-
-<div style="margin-bottom:8px;">  
 <span style="display:inline-block;width:15px;height:15px;background:blue;opacity:1;border-radius:3px;"></span>  
 <b> Cặp đôi hoàn hảo</b> — Carry
 </div>  
   
+<div style="margin-bottom:8px;">  
+<span style="display:inline-block;width:15px;height:15px;background:yellow;opacity:1;border-radius:3px;"></span>  
+<b> Cặp đôi hoàn hảo</b> — Support
+</div>  
+
 <div style="margin-bottom:8px;">  
 <span style="display:inline-block;width:15px;height:15px;background:lime;opacity:1;border-radius:3px;"></span>  
 <b> Team 2</b> — Cân bằng nhưng không cân mọi kèo  
 </div>  
 
 <div style="margin-bottom:8px;">  
-<span style="display:inline-block;width:15px;height:15px;background:yellow;opacity:1;border-radius:3px;"></span>  
-<b> Cặp đôi hoàn hảo</b> — Support
-</div>  
+<span style="display:inline-block;width:15px;height:15px;background:purple;opacity:1;border-radius:3px;"></span>  
+<b> Carry & Cảm Tử</b> - Carry
+</div>
   
 <div style="margin-bottom:8px;">  
 <span style="display:inline-block;width:15px;height:15px;background:red;opacity:1;border-radius:3px;"></span>  
