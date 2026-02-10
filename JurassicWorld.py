@@ -97,7 +97,7 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
             x[mask3],  
             0,  
             y[mask3],  
-            color="lime",  
+            color="blue",  
             alpha=1  
         )  
   
@@ -105,7 +105,7 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
             x[mask4],  
             0,  
             y[mask4],  
-            color="blue",
+            color="lime",
             alpha=1  
         )  
   
