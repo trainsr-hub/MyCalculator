@@ -3,7 +3,7 @@ from datetime import timedelta, datetime  # ← thêm dòng này để dùng tim
 import numpy as np
 import matplotlib.pyplot as plt
 
-
+Time_Now = datetime.now() + timedelta(hours=7)
 
 def show_legend():
 
