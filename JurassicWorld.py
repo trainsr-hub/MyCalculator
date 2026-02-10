@@ -177,10 +177,9 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
             xytext=(5, 10),  
             textcoords="offset points"  
         )  
-  
-    # Sửa indent chuẩn 4 spaces
-    ax.set_xlim(min(y_max, max(400/1.5, real_minx)), real_x)  
-    ax.set_ylim(min(y_max, max(400/1.5, real_minx)), y_max) 
+ 
+    ax.set_xlim(min(y_max, real_minx), real_x)  
+    ax.set_ylim(min(y_max, real_minx), y_max) 
   
     ax.set_title(f"3.2x + y = {int(C)}")  
     ax.set_xlabel("ATK")  
