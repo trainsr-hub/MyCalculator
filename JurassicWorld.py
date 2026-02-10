@@ -307,7 +307,7 @@ def tab1hatchingtime():
 
     # Tính thời điểm hoàn thành nếu bắt đầu Timer ngay bây giờ
     finish_time = Time_Now + Timer
-    finish_at = finish_time.strftime("%H:%M") + (finish_time.strftime(" %d") if finish_time.day != Time_Now.day else "") + (finish_time.strftime("/%m") if finish_time.month != Time_Now.month else "")
+    finish_at = finish_time.strftime("%H:%M") + (f" + {(finish_time.date() - Time_Now.date()).days} Days" if finish_time.date() != Time_Now.date() else "")
     st.code(finish_at)
 
 
