@@ -44,7 +44,7 @@ margin-top:15px;">
 </div>  
 
 <div style="margin-bottom:8px;">  
-<span style="display:inline-block;width:15px;height:15px;background:blue;opacity:1;border-radius:3px;"></span>  
+<span style="display:inline-block;width:15px;height:15px;background:gray;opacity:0.6;border-radius:3px;"></span>  
 Đồng nát
 </div>  
   
