@@ -44,7 +44,8 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
         return  
   
     x_max = max(C / 3.2, x_point + 25)  
-    real_x = C / (1.07 + 3.2)
+    real_x = C / (1 + 3.2)
+    real_minx = C / (10 + 3.2)
     y_max = max(C, y_point)  
   
     x = np.linspace(0, x_max, 400)  
@@ -178,7 +179,7 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
   
     # Sửa indent chuẩn 4 spaces  
     if C > 700:  
-        ax.set_xlim(400/1.5, real_x)  
+        ax.set_xlim(max(400/1.5, real_minx), real_x)  
         ax.set_ylim(0, y_max - 3.2 * x1)  
     else:  
         ax.set_xlim(0, max(x_max, x_point))  
