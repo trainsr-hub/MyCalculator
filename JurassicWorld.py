@@ -335,6 +335,7 @@ def tab3():
     }
 
     Flock = {
+        "Sinosauropteryx lv1": (477, 149),
         "Preondactylus lv1": (282, 171),
         "Compsognathus lv1": (249, 95),
         "Sinosauropteryx lv5": (583, 182),
