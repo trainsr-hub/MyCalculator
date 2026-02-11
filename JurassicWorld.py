@@ -438,9 +438,9 @@ def tab1hatchingtime():
   
     with col2:  
         show_boxed_text("Timer", format_duration(Timer), "30px", bg_color="#8f8f8f", description=finish_at)  
-  
-    show_boxed_text("Free", f"{format_duration(Free_Time)}", "30px", bg_color=colorfree)
     plot_decay_timedelta(duration)
+    show_boxed_text("Free", f"{format_duration(Free_Time)}", "30px", bg_color=colorfree)
+    
   
 
   
