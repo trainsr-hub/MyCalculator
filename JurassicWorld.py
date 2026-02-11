@@ -11,7 +11,7 @@ def plot_decay_timedelta(Timedelta, max_x=10):
     global Time_Now
 
     # ===== TẠO X LINSPACE MỊN =====
-    x_curve = np.linspace(0, max_x, 400)  # đường cong mượt
+    x_curve = np.linspace(-0.5, max_x + 0.5, 400)  # đường cong mượt
     x_points = np.arange(0, max_x + 1)    # các điểm nguyên
 
     total_seconds = Timedelta.total_seconds()
