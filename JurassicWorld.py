@@ -7,43 +7,73 @@ Time_Now = datetime.now() + timedelta(hours=7)
 
 
 
+
 def plot_decay_timedelta(Timedelta):
     global Time_Now  # sử dụng biến global Time_Now
 
     # Tạo trục x từ 0 → 10
     x = np.arange(0, 11)
 
-    # Chuyển sang tổng số giây để nhân với 0.9^x
-    total_seconds = Timedelta.total_seconds()  # bắt buộc phải chuyển sang số
+    # Chuyển Timedelta sang giây
+    total_seconds = Timedelta.total_seconds()  # bắt buộc vì timedelta không nhân float trực tiếp
 
+    # Tính y = Timedelta * 0.9^x
     y_seconds = np.array([total_seconds * (0.9 ** i) for i in x])
 
-    # Tạo figure
+    # ===== Xác định màu dựa vào Time_Now + Timedelta =====
+    target_time = Time_Now + Timedelta  # thời điểm kết thúc
+    hour = target_time.hour
+
+    if 7 <= hour < 22:
+        fill_color = "lime"
+    elif 0 <= hour < 7:
+        fill_color = "yellow"
+    else:
+        fill_color = "red"
+
+    # ===== Tạo figure =====
     fig, ax = plt.subplots()
 
-    # Vẽ đường
+    # Vẽ đường chính
     ax.plot(x, y_seconds)
 
     ax.scatter(
         x,
         y_seconds,
-        color="blue",      # ← dot màu xanh dương 
-        zorder=3            # ← đảm bảo dot nằm trên đường
+        color="blue",
+        zorder=3
     )
 
-    # Format trục Y bằng format_duration(td)
-    y_timedelta = [timedelta(seconds=s) for s in y_seconds]
+    # ===== Tô màu từng khoảng step = 1 =====
+    for n in range(0, 11):
 
-    ax.set_xlim(0, x[-1])  
-    ax.set_ylim(100000, 605000) 
- 
-    
+        left = n - 0.5
+        right = n + 0.5
+
+        # Giới hạn trong khoảng 0 → 10
+        left = max(left, 0)
+        right = min(right, 10)
+
+        # Nội suy y tại left và right
+        x_fill = np.linspace(left, right, 50)
+        y_fill = total_seconds * (0.9 ** x_fill)
+
+        ax.fill_between(
+            x_fill,
+            y_fill,
+            0,
+            color=fill_color,
+            alpha=0.3
+        )
+
+    ax.set_xlim(0, 10)
     ax.set_xlabel("Quảng cáo")
     ax.set_title("Timedelta * 0.9^n")
-    ax.yaxis.set_visible(True)  # ← Ẩn toàn bộ trục Y (ticks + label)
+    ax.yaxis.set_visible(True)
+
     st.pyplot(fig)
 
-    return y_timedelta
+    return [timedelta(seconds=s) for s in y_seconds]
 
 
 
