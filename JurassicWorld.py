@@ -44,19 +44,31 @@ def plot_decay_timedelta(Timedelta):
         zorder=3
     )
 
-    # ===== Tô màu từng khoảng step = 1 =====
+    # ===== Tô màu từng khoảng step = 1 (màu tính theo từng n) =====
     for n in range(0, 11):
 
         left = n - 0.5
         right = n + 0.5
 
-        # Giới hạn trong khoảng 0 → 10
         left = max(left, 0)
         right = min(right, 10)
 
-        # Nội suy y tại left và right
+        # Nội suy x trong khoảng
         x_fill = np.linspace(left, right, 50)
         y_fill = total_seconds * (0.9 ** x_fill)
+
+        # ===== TÍNH MÀU THEO TỪNG n =====
+        current_seconds = total_seconds * (0.9 ** n)  # ← duration tại n
+        current_time = Time_Now + timedelta(seconds=current_seconds)
+
+        hour = current_time.hour
+
+        if 7 <= hour < 22:
+            fill_color = "lime"
+        elif 0 <= hour < 7:
+            fill_color = "yellow"
+        else:
+            fill_color = "red"
 
         ax.fill_between(
             x_fill,
