@@ -53,9 +53,9 @@ def plot_decay_timedelta(Timedelta, max_x=7):
         if 7 <= hour < 22:
             fill_color = "lime"
         elif 0 <= hour < 7:
-            fill_color = "yellow"
-        else:
             fill_color = "red"
+        else:
+            fill_color = "orange"
 
         ax.fill_between(
             x_fill,
