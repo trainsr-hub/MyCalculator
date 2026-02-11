@@ -150,7 +150,6 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
     else:  
         ax.fill_between(x, 0, y, alpha=0.3)  
     if real_x > deadzone_x: ax.fill_between(x[x <= deadzone_x], 0, y[x <= deadzone_x], hatch='/', facecolor='none', edgecolor='black')  # add "/" hatch for non-red region from 0→400
-    ax.plot([400, 400], [0, C - 3.2 * 400])
     # =========================  
     # VÙNG RED (> C)  
     # =========================  
