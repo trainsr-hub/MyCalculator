@@ -218,7 +218,7 @@ def show_boxed_text(
     # extract numeric part from font_size to calculate 1/4 size for description
     try:
         base_size = float(font_size.replace("px", ""))  # assume px unit
-        desc_size = f"{base_size / 4}px"  # description size = value size * 1/2
+        desc_size = f"{base_size / 2}px" 
     except ValueError:
         desc_size = "12px"  # fallback size if font_size is not numeric
     
