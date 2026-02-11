@@ -37,8 +37,8 @@ def plot_decay_timedelta(Timedelta, max_x=10):
         left = n - 0.5
         right = n + 0.5
 
-        left = max(left, 0)
-        right = min(right, max_x)
+        left = max(left, -0.5)
+        right = min(right, max_x + 0.5)
 
         x_fill = np.linspace(left, right, 50)
         y_fill = total_seconds * (0.9 ** x_fill)
