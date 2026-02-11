@@ -254,7 +254,7 @@ def select_duration(num_selectors, key_prefix):
             days = st.selectbox(  
                 "📅 Days",  
                 options=list(range(7, -1, -1)), 
-                index=-1, 
+                index=7, 
                 key=f"{key_prefix}_days"  
             )  
   
@@ -262,7 +262,7 @@ def select_duration(num_selectors, key_prefix):
             hours = st.selectbox(  
                 "⏰ Hours",  
                 options=list(range(24, -1, -1)), 
-                index=-1, 
+                index=24, 
                 key=f"{key_prefix}_hours"  
             )  
   
@@ -270,7 +270,7 @@ def select_duration(num_selectors, key_prefix):
             minutes = st.selectbox(  
                 "⏱️ Minutes",  
                 options=list(range(60, -1, -1)),  
-                index=-1,
+                index=60,
                 key=f"{key_prefix}_minutes"  
             )  
   
@@ -279,7 +279,7 @@ def select_duration(num_selectors, key_prefix):
             hours = st.selectbox(  
                 "⏰ Hours",  
                 options=list(range(24, -1, -1)), 
-                index=-1, 
+                index=24, 
                 key=f"{key_prefix}_hours"  
             )  
   
@@ -287,7 +287,7 @@ def select_duration(num_selectors, key_prefix):
             minutes = st.selectbox(  
                 "⏱️ Minutes",  
                 options=list(range(60, -1, -1)),  
-                index=-1,
+                index=60,
                 key=f"{key_prefix}_minutes"  
             )  
   
@@ -317,7 +317,7 @@ def tab1hatchingtime():
     duration = select_duration(3, "hatchingtime")  
   
     if duration != timedelta(0):  
-        ads = st.selectbox("🎬 Ads", options=list(range(7, -1, -1)), index=-1)  
+        ads = st.selectbox("🎬 Ads", options=list(range(10, -1, -1)), index=7)  
     else:  
         ads = 1  
   
