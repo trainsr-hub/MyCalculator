@@ -70,7 +70,7 @@ def plot_decay_timedelta(Timedeltax, max_x=7, n_times=None):
             text_label,
             ha='center',
             va='center',
-            fontsize=10,
+            fontsize=20,
             color='black',
             zorder=5
         )
