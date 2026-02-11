@@ -98,8 +98,8 @@ def plot_decay_timedelta(Timedeltax, max_x=7, n_times=None):
     ax.set_ylim(0, y_curve.max() * 1.05)
     import math
     max_days = math.ceil(total_days)
-    yticks = ax.get_yticks()
-    ax.set_yticklabels([f"{t / 86400}D" for t in yticks])
+    ax.set_yticks([d * 86400 for d in range(0, max_days + 1)])
+    ax.set_yticklabels([f"{d}D" for d in range(0, max_days + 1)])
     for d in range(1, max_days + 1):
         ax.hlines(
             d * 86400,
