@@ -96,6 +96,7 @@ def plot_decay_timedelta(Timedeltax, max_x=7, n_times=None):
                     ymax=y_top,
                     linestyles="solid",
                     linewidth=2,
+                    color="white",
                     zorder=6
                 )
 
