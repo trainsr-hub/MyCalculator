@@ -7,7 +7,7 @@ Time_Now = datetime.now() + timedelta(hours=7)
 
 
 
-def plot_decay_timedelta(Timedeltax, max_x=7):
+def plot_decay_timedelta(Timedeltax, max_x=7, n_times=None):
     global Time_Now
     free_time = max(Timedeltax * 0.05, timedelta(minutes=5))
     Timedelta = Timedeltax - free_time
@@ -80,6 +80,24 @@ def plot_decay_timedelta(Timedeltax, max_x=7):
             color='black',
             zorder=5
         )
+
+# ===== VẼ 2 ĐƯỜNG X = n_times ± 0.5 =====
+    if isinstance(n_times, int) and n_times <= max_x:
+
+        for x_line in (n_times - 0.5, n_times + 0.5):
+
+            if -0.5 <= x_line <= max_x + 0.5:
+
+                y_top = total_seconds * (0.9 ** x_line)
+
+                ax.vlines(
+                    x_line,
+                    ymin=0,
+                    ymax=y_top,
+                    linestyles="solid",
+                    linewidth=2,
+                    zorder=6
+                )
 
     # ===== AUTO SCALE Y =====
     ax.set_ylim(0, y_curve.max() * 1.05)
@@ -438,7 +456,7 @@ def tab1hatchingtime():
   
     with col2:  
         show_boxed_text("Timer", format_duration(Timer), "30px", bg_color="#8f8f8f")  
-    plot_decay_timedelta(duration)
+    plot_decay_timedelta(Timedeltax=duration, n_times=ads)
     show_boxed_text("Free", f"{format_duration(Free_Time)}", "30px", bg_color=colorfree, description=finish_at)
     
   
