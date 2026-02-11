@@ -7,7 +7,7 @@ Time_Now = datetime.now() + timedelta(hours=7)
 
 
 
-def plot_decay_timedelta(Timedelta, max_x=10):
+def plot_decay_timedelta(Timedelta, max_x=7):
     global Time_Now
 
     # ===== TẠO X LINSPACE MỊN =====
@@ -66,7 +66,7 @@ def plot_decay_timedelta(Timedelta, max_x=10):
         )
 
         # ===== TEXT =====
-        text_label = day_diff = current_time.strftime("%I:%M %p")  # giờ:phút định dạng 12h
+        text_label = day_diff = current_time.strftime("%H:%M")  # giờ:phút định dạng 12h
 
         ax.text(
             n,
