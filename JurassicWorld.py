@@ -39,7 +39,7 @@ def plot_decay_timedelta(Timedelta):
   
     ax.set_xlabel("Quảng cáo")
     ax.set_title("Timedelta * 0.9^n")
-    ax.yaxis.set_visible(False)  # ← Ẩn toàn bộ trục Y (ticks + label)
+    ax.yaxis.set_visible(True)  # ← Ẩn toàn bộ trục Y (ticks + label)
     st.pyplot(fig)
 
     return y_timedelta
