@@ -35,6 +35,8 @@ def plot_decay_timedelta(Timedelta):
     y_timedelta = [timedelta(seconds=s) for s in y_seconds]
 
     ax.set_xlim(0, x[-1] + 0.5)  
+    ax.set_ylim(0, 605000) 
+ 
     
     ax.set_xlabel("Quảng cáo")
     ax.set_title("Timedelta * 0.9^n")
