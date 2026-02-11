@@ -142,7 +142,7 @@ def plot_decay_timedelta(Timedeltax, max_x=7, n_times=None):
                 ha="left",      # đẩy text sang phải một chút
                 va="bottom",    # đẩy lên trên một chút
                 fontsize=9,
-                color="white",
+                color="black",
                 zorder=8
             )
     ax.set_xlim(-0.5, max_x + 0.5)
