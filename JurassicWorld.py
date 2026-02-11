@@ -7,58 +7,43 @@ Time_Now = datetime.now() + timedelta(hours=7)
 
 
 
+def plot_decay_timedelta(Timedelta, max_x=10):
+    global Time_Now
 
-def plot_decay_timedelta(Timedelta):
-    global Time_Now  # sử dụng biến global Time_Now
+    # ===== TẠO X LINSPACE MỊN =====
+    x_curve = np.linspace(0, max_x, 400)  # đường cong mượt
+    x_points = np.arange(0, max_x + 1)    # các điểm nguyên
 
-    # Tạo trục x từ 0 → 10
-    x = np.arange(0, 11)
+    total_seconds = Timedelta.total_seconds()
 
-    # Chuyển Timedelta sang giây
-    total_seconds = Timedelta.total_seconds()  # bắt buộc vì timedelta không nhân float trực tiếp
+    y_curve = total_seconds * (0.9 ** x_curve)
+    y_points = total_seconds * (0.9 ** x_points)
 
-    # Tính y = Timedelta * 0.9^x
-    y_seconds = np.array([total_seconds * (0.9 ** i) for i in x])
-
-    # ===== Xác định màu dựa vào Time_Now + Timedelta =====
-    target_time = Time_Now + Timedelta  # thời điểm kết thúc
-    hour = target_time.hour
-
-    if 7 <= hour < 22:
-        fill_color = "lime"
-    elif 0 <= hour < 7:
-        fill_color = "fec820"
-    else:
-        fill_color = "red"
-
-    # ===== Tạo figure =====
     fig, ax = plt.subplots()
 
-    # Vẽ đường chính
-    ax.plot(x, y_seconds)
+    # ===== VẼ ĐƯỜNG MƯỢT =====
+    ax.plot(x_curve, y_curve)
 
     ax.scatter(
-        x,
-        y_seconds,
+        x_points,
+        y_points,
         color="blue",
         zorder=3
     )
 
-    # ===== Tô màu từng khoảng step = 1 (màu tính theo từng n) =====
-    for n in range(0, 10):
+    # ===== TÔ TỪNG STEP =====
+    for n in range(0, max_x + 1):
 
         left = n - 0.5
         right = n + 0.5
 
-        left = max(left, -1)
-        right = min(right, 11)
+        left = max(left, 0)
+        right = min(right, max_x)
 
-        # Nội suy x trong khoảng
         x_fill = np.linspace(left, right, 50)
         y_fill = total_seconds * (0.9 ** x_fill)
 
-        # ===== TÍNH MÀU THEO TỪNG n =====
-        current_seconds = total_seconds * (0.9 ** n)  # ← duration tại n
+        current_seconds = total_seconds * (0.9 ** n)
         current_time = Time_Now + timedelta(seconds=current_seconds)
 
         hour = current_time.hour
@@ -77,33 +62,33 @@ def plot_decay_timedelta(Timedelta):
             color=fill_color,
             alpha=1
         )
-# ===== TEXT HIỂN THỊ SỐ NGÀY CHÊNH LỆCH =====
+
+        # ===== TEXT =====
         day_diff = (current_time.date() - Time_Now.date()).days
         text_label = f"+{day_diff}"
 
-        # Vị trí canh giữa
-        y_center = current_seconds / 2  # ½ chiều cao tại n
-
         ax.text(
-            n,                 # x = n (đường thẳng vô hình)
-            y_center,          # giữa theo chiều dọc
+            n,
+            current_seconds / 2,
             text_label,
-            ha='center',       # căn giữa ngang
-            va='center',       # căn giữa dọc
+            ha='center',
+            va='center',
             fontsize=10,
             color='black',
             zorder=5
         )
 
-    ax.set_xlim(-0.5 , 10 + 0.5)
+    # ===== AUTO SCALE Y =====
+    ax.set_ylim(0, y_curve.max() * 1.05)
+
+    ax.set_xlim(-0.5, max_x + 0.5)
+
     ax.set_xlabel("Quảng cáo")
     ax.set_title("Timedelta * 0.9^n")
-    ax.yaxis.set_visible(True)
 
     st.pyplot(fig)
 
-    return [timedelta(seconds=s) for s in y_seconds]
-
+    return [timedelta(seconds=s) for s in y_points]
 
 
 def show_legend():  
