@@ -14,7 +14,9 @@ def plot_decay_timedelta(Timedelta, max_x=10):
     x_curve = np.linspace(-0.5, max_x + 0.5, 400)  # đường cong mượt
     x_points = np.arange(0, max_x + 1)    # các điểm nguyên
 
-    total_seconds = Timedelta.total_seconds() / 86400  # đổi sang ngày ngay từ đầu
+    total_seconds = Timedelta.total_seconds()
+    total_days = total_seconds/86400
+  # đổi sang ngày ngay từ đầu
 
     y_curve = total_seconds * (0.9 ** x_curve)
     y_points = total_seconds * (0.9 ** x_points)
@@ -65,7 +67,7 @@ def plot_decay_timedelta(Timedelta, max_x=10):
 
         # ===== TEXT =====
         day_diff = (current_time.date() - Time_Now.date()).days
-        text_label = f"-{day_diff}"
+        text_label = f"+{day_diff}D"
 
         ax.text(
             n,
