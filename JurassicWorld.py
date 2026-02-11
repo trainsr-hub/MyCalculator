@@ -28,13 +28,6 @@ def plot_decay_timedelta(Timedeltax, max_x=7, n_times=None):
     # ===== VẼ ĐƯỜNG MƯỢT =====
     ax.plot(x_curve, y_curve)
 
-    ax.scatter(
-        x_points,
-        y_points,
-        color="blue",
-        zorder=3
-    )
-
     # ===== TÔ TỪNG STEP =====
     for n in range(0, max_x + 1):
 
