@@ -115,7 +115,7 @@ def plot_decay_timedelta(Timedeltax, max_x=7, n_times=None):
                 max_x + 0.5
             ),
             linestyles="solid",
-            color="#F0F0F0",
+            color="black",
             alpha=0.3
         )
     ax.set_xlim(-0.5, max_x + 0.5)
