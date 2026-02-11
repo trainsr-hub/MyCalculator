@@ -14,7 +14,8 @@ def plot_decay_timedelta(Timedeltax, max_x=7, n_times=None):
     Timedelta = Timedeltax - free_time
 
     # ===== TẠO X LINSPACE MỊN =====
-    x_curve = np.linspace(-0.5, max_x + 0.5, 400)  # đường cong mượt
+    x_curve1 = np.linspace(-0.5, max_x + 0.5, 400)  # đường cong mượt
+    x_curve = np.floor(x_curve1)
     x_points = np.arange(0, max_x + 1)    # các điểm nguyên
 
     total_seconds = Timedelta.total_seconds()
