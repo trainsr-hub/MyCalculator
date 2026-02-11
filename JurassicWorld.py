@@ -75,7 +75,7 @@ def plot_decay_timedelta(Timedelta):
             y_fill,
             0,
             color=fill_color,
-            alpha=0.3
+            alpha=1
         )
 
     ax.set_xlim(0, 10)
