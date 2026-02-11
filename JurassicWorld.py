@@ -27,7 +27,7 @@ def plot_decay_timedelta(Timedelta):
     if 7 <= hour < 22:
         fill_color = "lime"
     elif 0 <= hour < 7:
-        fill_color = "orange"
+        fill_color = "fec820"
     else:
         fill_color = "red"
 
@@ -95,7 +95,7 @@ def plot_decay_timedelta(Timedelta):
             zorder=5
         )
 
-    ax.set_xlim(0, 10)
+    ax.set_xlim(-0.5 , 10 + 0.5)
     ax.set_xlabel("Quảng cáo")
     ax.set_title("Timedelta * 0.9^n")
     ax.yaxis.set_visible(True)
