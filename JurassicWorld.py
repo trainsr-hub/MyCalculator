@@ -35,9 +35,6 @@ def plot_decay_timedelta(Timedelta):
     # Format trục Y bằng format_duration(td)
     y_timedelta = [timedelta(seconds=s) for s in y_seconds]
 
-    ax.set_yticks(y_seconds)
-    ax.set_yticklabels([format_duration(td) for td in y_timedelta])
-
     ax.set_xlabel("n")
     ax.set_ylabel("Timedelta")
     ax.set_title("Timedelta * 0.9^n")
