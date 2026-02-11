@@ -67,7 +67,7 @@ def plot_decay_timedelta(Timedeltax, max_x=7, n_times=None):
 
         ax.text(
             n,
-            total_seconds * (0.9 ** (n - 0.5)),
+            total_seconds * (0.9 ** (n - 0.5)) + y_curve.max() * 0.02,
             text_label,
             ha='center',
             va='center',
