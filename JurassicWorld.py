@@ -45,13 +45,13 @@ def plot_decay_timedelta(Timedelta):
     )
 
     # ===== Tô màu từng khoảng step = 1 (màu tính theo từng n) =====
-    for n in range(0, 11):
+    for n in range(0, 10):
 
         left = n - 0.5
         right = n + 0.5
 
-        left = max(left, 0)
-        right = min(right, 10)
+        left = max(left, -1)
+        right = min(right, 11)
 
         # Nội suy x trong khoảng
         x_fill = np.linspace(left, right, 50)
