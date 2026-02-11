@@ -83,7 +83,7 @@ def plot_decay_timedelta(Timedelta, max_x=10):
     # ===== AUTO SCALE Y =====
     ax.set_ylim(0, y_curve.max() * 1.05)
     yticks = ax.get_yticks()
-    ax.set_yticklabels([f"{int(t / 86400)}D" for t in yticks])
+    ax.set_yticklabels([f"{t / 86400}D" for t in yticks])
     ax.set_xlim(-0.5, max_x + 0.5)
 
     ax.set_xlabel("Quảng cáo")
