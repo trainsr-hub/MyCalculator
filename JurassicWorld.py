@@ -86,6 +86,16 @@ def plot_decay_timedelta(Timedelta, max_x=10):
     max_days = math.ceil(total_days)
     ax.set_yticks([d * 86400 for d in range(0, max_days + 1)])
     ax.set_yticklabels([f"{d}D" for d in range(0, max_days + 1)])
+    for d in range(1, max_days + 1):
+        ax.hlines(
+            d * 86400,
+            -0.5,
+            min(
+                math.log((d * 86400) / total_seconds) / math.log(0.9),
+                max_x + 0.5
+            ),
+            linestyles="dashed"
+        )
     ax.set_xlim(-0.5, max_x + 0.5)
 
     ax.set_xlabel("Quảng cáo")
