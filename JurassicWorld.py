@@ -212,28 +212,37 @@ def show_boxed_text(
     value,  
     font_size="20px",  
     text_color="white",  
-    bg_color="#333333"  
+    bg_color="#333333",
+    description=None  # new optional parameter, default keeps old calls working
 ):  
+    # extract numeric part from font_size to calculate 1/4 size for description
+    try:
+        base_size = float(font_size.replace("px", ""))  # assume px unit
+        desc_size = f"{base_size / 4}px"  # description size = 1/4 value size
+    except ValueError:
+        desc_size = "12px"  # fallback size if font_size is not numeric
+    
     st.markdown(  
         f"""  
         <div style="  
             display: flex;  
+            flex-direction: column;  /* stack value and description vertically */
             justify-content: center;  
-            align-items: center;  
+            align-items: center;  /* center horizontally */
             background-color: {bg_color};  
             color: {text_color};  
-            font-size: {font_size};  
             padding: 12px;  
             border-radius: 8px;  
             margin: 6px 0;  
-            font-weight: 600;  
         ">  
-            {label}: {value}  
+            <div style="font-size: {font_size}; font-weight: 600;">
+                {label}: {value}
+            </div>
+            {f'<div style="font-size: {desc_size}; opacity: 0.85; margin-top: 4px;">{description}</div>' if description else ''}
         </div>  
         """,  
         unsafe_allow_html=True  
-    )  
-  
+    )
   
 def select_duration(num_selectors, key_prefix):  
   
@@ -311,21 +320,21 @@ def tab1hatchingtime():
     Free_Time = max(duration * 0.05, timedelta(minutes=5))  
     Timer = max(timedelta(0), Now_Time - Free_Time)  
   
-    col1, col2 = st.columns(2)  
+    col1, col2 = st.columns(2)
+    # Tính thời điểm hoàn thành nếu bắt đầu Timer ngay bây giờ  
+    finish_time = Time_Now + Timer  
+    finish_at = finish_time.strftime("%H:%M") + (f" + {(finish_time.date() - Time_Now.date()).days} Days" if finish_time.date() != Time_Now.date() else "")  
+  
   
     with col1:  
         show_boxed_text("Duration", format_duration(Now_Time), "30px", bg_color="#0000ff")  
   
     with col2:  
-        show_boxed_text("Timer", format_duration(Timer), "30px", bg_color="#8f8f8f")  
+        show_boxed_text("Timer", format_duration(Timer), "30px", bg_color="#8f8f8f", finish_at)  
   
     show_boxed_text("Free", format_duration(Free_Time), "30px", bg_color="#008000")  
   
-    # Tính thời điểm hoàn thành nếu bắt đầu Timer ngay bây giờ  
-    finish_time = Time_Now + Timer  
-    finish_at = finish_time.strftime("%H:%M") + (f" + {(finish_time.date() - Time_Now.date()).days} Days" if finish_time.date() != Time_Now.date() else "")  
-    st.code(finish_at)  
-  
+
   
 def tab2():  
   
