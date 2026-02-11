@@ -92,6 +92,7 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
         mask5 = (x > x4) & (x <= x5)  
         mask6 = (x > x5) & (x <= x6)  
         mask7 = (x > x6) & (x <= x_max)  
+        deadzone_x_neo = min(deadzone_x, x6)
   
         ax.fill_between(  
             x[mask1],  
@@ -149,7 +150,7 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
         )  
     else:  
         ax.fill_between(x, 0, y, alpha=0.3)  
-    if real_x > deadzone_x: ax.fill_between(x[x <= deadzone_x], 0, y[x <= deadzone_x], hatch='/', facecolor='none', edgecolor='black')  # add "/" hatch for non-red region from 0→400
+    if real_x > deadzone_x: ax.fill_between(x[x <= deadzone_x_neo], 0, y[x <= deadzone_x_neo], hatch='/', facecolor='none', edgecolor='black')  # add "/" hatch for non-red region from 0→400
     # =========================  
     # VÙNG RED (> C)  
     # =========================  
