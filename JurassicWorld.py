@@ -40,9 +40,8 @@ def plot_decay_timedelta(Timedeltax, max_x=7, n_times=None):
         left = max(left, -0.5)
         right = min(right, max_x + 0.5)
 
-        x_fill = np.linspace(left, right, 50)
-        y_fill = total_seconds * (0.9 ** x_fill)
-
+        x_fill = np.array([left, right])  # giữ tên biến cũ
+        y_fill = np.array([total_seconds * (0.9 ** (n - 0.5))] * 2)  # digital height
         current_seconds = total_seconds * (0.9 ** n)
         current_time = Time_Now + timedelta(seconds=current_seconds)
 
