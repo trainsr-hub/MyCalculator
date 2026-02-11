@@ -65,7 +65,7 @@ def plot_decay_timedelta(Timedelta, max_x=10):
 
         # ===== TEXT =====
         day_diff = (current_time.date() - Time_Now.date()).days
-        text_label = f"+{day_diff}"
+        text_label = f"-{day_diff}"
 
         ax.text(
             n,
@@ -84,7 +84,6 @@ def plot_decay_timedelta(Timedelta, max_x=10):
     ax.set_xlim(-0.5, max_x + 0.5)
 
     ax.set_xlabel("Quảng cáo")
-    ax.set_title("Timedelta * 0.9^n")
 
     st.pyplot(fig)
 
