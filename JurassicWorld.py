@@ -28,8 +28,6 @@ def plot_decay_timedelta(Timedeltax, max_x=7, n_times=None):
     fig, ax = plt.subplots()
 
     # ===== VẼ ĐƯỜNG MƯỢT =====
-    # ax.plot(x_curve, y_curve)
-    ax.plot(x_curve1, total_seconds * (0.9 ** x_curve1))
     ax.plot(x_curve1, total_seconds * (0.9 ** (np.floor(x_curve1 + 0.5) - 0.5)), drawstyle="steps-mid")
     # ===== TÔ TỪNG STEP =====
     for n in range(0, max_x + 1):
