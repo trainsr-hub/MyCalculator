@@ -6,31 +6,45 @@ import matplotlib.pyplot as plt
 Time_Now = datetime.now() + timedelta(hours=7)  
 
 
+
 def plot_decay_timedelta(Timedelta):
     global Time_Now  # sử dụng biến global Time_Now
 
-    # Tạo trục x từ 0 đến 10
+    # Tạo trục x từ 0 → 10
     x = np.arange(0, 11)
 
-    # Chuyển Timedelta sang tổng số giây để có thể nhân với float
-    total_seconds = Timedelta.total_seconds()  # ← bắt buộc dùng cách này
+    # Chuyển sang tổng số giây để nhân với 0.9^x
+    total_seconds = Timedelta.total_seconds()  # bắt buộc phải chuyển sang số
 
-    # Tính y = Timedelta * 0.9^x (đơn vị: giây)
     y_seconds = np.array([total_seconds * (0.9 ** i) for i in x])
 
-    # Nếu muốn giữ dạng timedelta
+    # Tạo figure
+    fig, ax = plt.subplots()
+
+    # Vẽ đường
+    ax.plot(x, y_seconds)
+
+    # Thêm các dot màu xanh lá tại các điểm nguyên của x
+    ax.scatter(
+        x,
+        y_seconds,
+        color="green",      # ← dot màu xanh lá
+        zorder=3            # ← đảm bảo dot nằm trên đường
+    )
+
+    # Format trục Y bằng format_duration(td)
     y_timedelta = [timedelta(seconds=s) for s in y_seconds]
 
-    # Vẽ đồ thị (dùng seconds để matplotlib hiểu được)
-    fig, ax = plt.subplots()
-    ax.plot(x, y_seconds)
+    ax.set_yticks(y_seconds)
+    ax.set_yticklabels([format_duration(td) for td in y_timedelta])
+
     ax.set_xlabel("n")
-    ax.set_ylabel("Timedelta (seconds)")
+    ax.set_ylabel("Timedelta")
     ax.set_title("Timedelta * 0.9^n")
 
     st.pyplot(fig)
 
-    return y_timedelta  # trả về danh sách timedelta tương ứng
+    return y_timedelta
 
 
 
