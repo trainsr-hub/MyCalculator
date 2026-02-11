@@ -114,7 +114,8 @@ def plot_decay_timedelta(Timedeltax, max_x=7, n_times=None):
                 math.log((d * 86400) / total_seconds) / math.log(0.9),
                 max_x + 0.5
             ),
-            linestyles="solid"
+            linestyles="solid",
+            color="F0F0F0",
         )
     ax.set_xlim(-0.5, max_x + 0.5)
 
