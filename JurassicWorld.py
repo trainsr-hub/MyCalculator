@@ -24,21 +24,19 @@ def plot_decay_timedelta(Timedelta):
     # Vẽ đường
     ax.plot(x, y_seconds)
 
-    # Thêm các dot màu xanh lá tại các điểm nguyên của x
     ax.scatter(
         x,
         y_seconds,
-        color="green",      # ← dot màu xanh lá
+        color="blue",      # ← dot màu xanh dương 
         zorder=3            # ← đảm bảo dot nằm trên đường
     )
 
     # Format trục Y bằng format_duration(td)
     y_timedelta = [timedelta(seconds=s) for s in y_seconds]
 
-    ax.set_xlabel("n")
-    ax.set_ylabel("Timedelta")
+    ax.set_xlabel("Quảng cáo")
     ax.set_title("Timedelta * 0.9^n")
-
+    ax.yaxis.set_visible(False)  # ← Ẩn toàn bộ trục Y (ticks + label)
     st.pyplot(fig)
 
     return y_timedelta
