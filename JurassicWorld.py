@@ -34,8 +34,8 @@ def plot_decay_timedelta(Timedelta):
     # Format trục Y bằng format_duration(td)
     y_timedelta = [timedelta(seconds=s) for s in y_seconds]
 
-    ax.set_xlim(0, x[-1] + 0.5)  
-    ax.set_ylim(0, 605000) 
+    ax.set_xlim(0, x[-1])  
+    ax.set_ylim(100000, 605000) 
  
     
     ax.set_xlabel("Quảng cáo")
