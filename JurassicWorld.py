@@ -7,8 +7,10 @@ Time_Now = datetime.now() + timedelta(hours=7)
 
 
 
-def plot_decay_timedelta(Timedelta, max_x=7):
+def plot_decay_timedelta(Timedeltax, max_x=7):
     global Time_Now
+    free_time = max(Timedeltax * 0.05, timedelta(minutes=5))
+    Timedelta = Timedeltax - free_time
 
     # ===== TẠO X LINSPACE MỊN =====
     x_curve = np.linspace(-0.5, max_x + 0.5, 400)  # đường cong mượt
