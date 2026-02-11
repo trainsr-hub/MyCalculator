@@ -312,7 +312,7 @@ def tab1hatchingtime():
     duration = select_duration(3, "hatchingtime")  
   
     if duration != timedelta(0):  
-        ads = st.selectbox("🎬 Ads", options=list(range(0, 8)))  
+        ads = st.selectbox("🎬 Ads", options=list(range(0, 11)))  
     else:  
         ads = 1  
   
