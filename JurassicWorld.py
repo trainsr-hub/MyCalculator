@@ -34,6 +34,9 @@ def plot_decay_timedelta(Timedelta):
     # Format trục Y bằng format_duration(td)
     y_timedelta = [timedelta(seconds=s) for s in y_seconds]
 
+    ax.set_xlim(min(0, x[-1])  
+    ax.set_ylim(min(0, y_seconds[-1]) 
+  
     ax.set_xlabel("Quảng cáo")
     ax.set_title("Timedelta * 0.9^n")
     ax.yaxis.set_visible(False)  # ← Ẩn toàn bộ trục Y (ticks + label)
