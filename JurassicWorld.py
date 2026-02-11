@@ -77,6 +77,23 @@ def plot_decay_timedelta(Timedelta):
             color=fill_color,
             alpha=1
         )
+# ===== TEXT HIỂN THỊ SỐ NGÀY CHÊNH LỆCH =====
+        day_diff = (current_time.date() - Time_Now.date()).days
+        text_label = f"+{day_diff}"
+
+        # Vị trí canh giữa
+        y_center = current_seconds / 2  # ½ chiều cao tại n
+
+        ax.text(
+            n,                 # x = n (đường thẳng vô hình)
+            y_center,          # giữa theo chiều dọc
+            text_label,
+            ha='center',       # căn giữa ngang
+            va='center',       # căn giữa dọc
+            fontsize=10,
+            color='black',
+            zorder=5
+        )
 
     ax.set_xlim(0, 10)
     ax.set_xlabel("Quảng cáo")
