@@ -4,7 +4,36 @@ import numpy as np
 import matplotlib.pyplot as plt  
   
 Time_Now = datetime.now() + timedelta(hours=7)  
-  
+
+
+def plot_decay_timedelta(Timedelta):
+    global Time_Now  # sử dụng biến global Time_Now
+
+    # Tạo trục x từ 0 đến 10
+    x = np.arange(0, 11)
+
+    # Chuyển Timedelta sang tổng số giây để có thể nhân với float
+    total_seconds = Timedelta.total_seconds()  # ← bắt buộc dùng cách này
+
+    # Tính y = Timedelta * 0.9^x (đơn vị: giây)
+    y_seconds = np.array([total_seconds * (0.9 ** i) for i in x])
+
+    # Nếu muốn giữ dạng timedelta
+    y_timedelta = [timedelta(seconds=s) for s in y_seconds]
+
+    # Vẽ đồ thị (dùng seconds để matplotlib hiểu được)
+    fig, ax = plt.subplots()
+    ax.plot(x, y_seconds)
+    ax.set_xlabel("n")
+    ax.set_ylabel("Timedelta (seconds)")
+    ax.set_title("Timedelta * 0.9^n")
+
+    st.pyplot(fig)
+
+    return y_timedelta  # trả về danh sách timedelta tương ứng
+
+
+
 def show_legend():  
   
     html = """<div style="border:1px solid #444;  
@@ -338,7 +367,8 @@ def tab1hatchingtime():
     with col2:  
         show_boxed_text("Timer", format_duration(Timer), "30px", bg_color="#8f8f8f", description=finish_at)  
   
-    show_boxed_text("Free", f"{format_duration(Free_Time)}", "30px", bg_color=colorfree)  
+    show_boxed_text("Free", f"{format_duration(Free_Time)}", "30px", bg_color=colorfree)
+    plot_decay_timedelta(duration)
   
 
   
