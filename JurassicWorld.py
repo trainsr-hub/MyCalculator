@@ -22,13 +22,13 @@ def plot_decay_timedelta(Timedeltax, max_x=7, n_times=None):
     total_days = total_seconds/86400
   # đổi sang ngày ngay từ đầu
 
-    y_curve = total_seconds * (0.9 ** x_curve)
+    y_curve = total_seconds * (0.9 ** np.floor(x_curve))
     y_points = total_seconds * (0.9 ** x_points)
 
     fig, ax = plt.subplots()
 
     # ===== VẼ ĐƯỜNG MƯỢT =====
-    ax.plot(x_points, y_points, drawstyle="steps-pre")
+    ax.plot(x_curve, y_curve)
     # ===== TÔ TỪNG STEP =====
     for n in range(0, max_x + 1):
 
