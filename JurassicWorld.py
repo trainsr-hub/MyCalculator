@@ -333,7 +333,7 @@ def tab1hatchingtime():
     with col2:  
         show_boxed_text("Timer", format_duration(Timer), "30px", bg_color="#8f8f8f")  
   
-    show_boxed_text("Free", f"{format_duration(Free_Time)} ~ {finish_at}", "30px", bg_color=colorfree)  
+    show_boxed_text("Free", f"{format_duration(Free_Time)} \n~ {finish_at}", "30px", bg_color=colorfree)  
   
 
   
