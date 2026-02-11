@@ -66,8 +66,7 @@ def plot_decay_timedelta(Timedelta, max_x=10):
         )
 
         # ===== TEXT =====
-        day_diff = (current_time.date() - Time_Now.date()).days
-        text_label = f"+{day_diff}D"
+        text_label = day_diff = current_time.strftime("%I:%M %p")  # giờ:phút định dạng 12h
 
         ax.text(
             n,
