@@ -450,7 +450,7 @@ def tab3():
     remain_Fero = max_Fero - Team_Fero  
   
     st.markdown("---")  
-    defaultATK3 = remain_Fero/9 if (850 - Main_Attack < remain_Fero/9) else 850 - Main_Attack
+    defaultATK3 = remain_Fero/9 if (850 - Main_Attack < remain_Fero/35) else 850 - Main_Attack
     Health3 = st.number_input("3rd Health", min_value=0, value=max(0, int(remain_Fero/3)), step=50)  
     Attack3 = st.number_input("3rd Attack", min_value=0, value=max(0, int(defaultATK3)), step=15)  
   
