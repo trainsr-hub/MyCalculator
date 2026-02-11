@@ -144,7 +144,7 @@ def plot_decay_timedelta(Timedeltax, max_x=7, n_times=None):
                 zorder=8
             )
     ax.set_xlim(-0.5, max_x + 0.5)
-    ax.yaxis.set_visible(False)
+    # ax.yaxis.set_visible(False)
 
     ax.set_xlabel("Quảng cáo")
 
