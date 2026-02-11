@@ -111,6 +111,27 @@ def plot_decay_timedelta(Timedeltax, max_x=7, n_times=None):
             color="black",
             alpha=0
         )
+# ===== DOT TẠI GIAO ĐIỂM y = n =====
+    for d in range(1, max_days + 1):
+
+        target_seconds = d * 86400
+
+        if target_seconds >= total_seconds:
+            continue
+
+        x_intersect = math.log(
+            target_seconds / total_seconds
+        ) / math.log(0.9)
+
+        if -0.5 <= x_intersect <= max_x + 0.5:
+
+            ax.scatter(
+                x_intersect,
+                target_seconds,
+                color="white",
+                edgecolor="black",
+                zorder=7
+            )
     ax.set_xlim(-0.5, max_x + 0.5)
 
     ax.set_xlabel("Quảng cáo")
