@@ -63,7 +63,7 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
     real_minx = C / (10 + 3.2)
     y_max = max(C, y_point)
     y_max_real = y_max - real_minx * 3.2
-    deadzone_x = max(800 - Optimal_x, 0)
+    deadzone_x = max(850 - Optimal_x, 0)
   
     x = np.linspace(0, x_max, 400)  
     y = C - 3.2 * x  
