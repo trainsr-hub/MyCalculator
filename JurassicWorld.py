@@ -323,7 +323,7 @@ def tab1hatchingtime():
     col1, col2 = st.columns(2)
     # Tính thời điểm hoàn thành nếu bắt đầu Timer ngay bây giờ  
     finish_time = Time_Now + Timer  
-    colorfree = "#008000" if timedelta(hours=7) <= finish_time <= timedelta(hours=22) else "#FF0000"  # Green if 7:00–22:00, else red
+    colorfree = "#008000" if datetime(1,1,1,7).time() <= finish_time.time() <= datetime(1,1,1,22).time() else "#FF0000"
     finish_at = finish_time.strftime("%H:%M") + (f" + {(finish_time.date() - Time_Now.date()).days} Days" if finish_time.date() != Time_Now.date() else "")
   
   
