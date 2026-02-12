@@ -530,7 +530,7 @@ def tab3():
   
     st.markdown("---")  
     defaultATK3 = remain_Fero/9 if (850 - Main_Attack < 266) else 850 - Main_Attack
-    Health3 = st.number_input("3rd Health", min_value=0, value=min(1200, max(int(remain_Fero/3), 2400 - Main_Health)), step=50)  
+    Health3 = st.number_input("3rd Health", min_value=0, value=min(1200, max(int(remain_Fero/3), 2200 - Main_Health)), step=50)  
     Attack3 = st.number_input("3rd Attack", min_value=0, value=max(0, int(defaultATK3)), step=15)  
   
     show_boxed_text(  
