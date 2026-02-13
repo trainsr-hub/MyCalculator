@@ -52,7 +52,10 @@ def plot_decay_timedelta(Time_Now, Timedeltax, max_x=7, n_times=None):
 
     ax.axhline(y=y_7, linestyle="-", linewidth=1)
 
-    # ===== FILL EACH STEP =====
+
+# ===== FILL EACH STEP =====
+    prev_day = 0  # theo dõi ngày trước đó
+
     for n in range(0, max_x + 1):
 
         left = n - 0.5
@@ -69,6 +72,7 @@ def plot_decay_timedelta(Time_Now, Timedeltax, max_x=7, n_times=None):
         current_time = Time_Now + timedelta(seconds=current_seconds)
         hour = current_time.hour
 
+        # ===== COLOR LOGIC =====
         if 7 <= hour < 22:
             fill_color = "lime"
         elif 0 <= hour < 7:
@@ -76,8 +80,19 @@ def plot_decay_timedelta(Time_Now, Timedeltax, max_x=7, n_times=None):
         else:
             fill_color = "orange"
 
+        # ===== TÔ PHẦN DƯỚI (như cũ) =====
         ax.fill_between(x_fill, y_fill, 0, color=fill_color, alpha=1)
 
+        # ===== TÔ PHẦN TRÊN (light blue) =====
+        ax.fill_between(
+            x_fill,
+            y_fill,
+            ymax_old,
+            color="lightblue",
+            alpha=1
+        )
+
+        # ===== TEXT TIME =====
         text_label = current_time.strftime("%H:%M")
 
         ax.text(
@@ -91,24 +106,19 @@ def plot_decay_timedelta(Time_Now, Timedeltax, max_x=7, n_times=None):
             zorder=5
         )
 
-    # ===== Y SCALE =====
-    ax.set_ylim(0, ymax_old * 1.05 if ymax_old > 0 else 1)
-    ax.set_xlim(-0.5, max_x + 0.5)
-    ax.set_xlabel("Quảng cáo")
-    ax.set_yticks([])
+        # ===== +nD LOGIC =====
+        day_diff = (current_time.date() - Time_Now.date()).days
 
-    # ===== HATCH ZONES =====
+        if day_diff > prev_day:
+            ax.text(
+                n,
+                ymax_old * 0.95,
+                f"+{day_diff}D",
+                ha='center',
+                va='center',
+                fontsize=11,
+                color='blue',
+                zorder=6
+            )
 
-    ax.fill_between(
-        [-0.5, max_x + 0.5],
-        0,
-        y_7,
-        hatch="/",
-        facecolor="none",
-        edgecolor="gray",
-        linewidth=0
-    )  # Vùng phía dưới 7h
-
-    st.pyplot(fig)
-
-    return []
+        prev_day = day_diff
