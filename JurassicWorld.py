@@ -75,7 +75,23 @@ def plot_decay_timedelta(Timedeltax, max_x=7, n_times=None):
         )
 
 
-
+# ===== SCALE THEO GIỜ HIỆN TẠI =====
+    now = Time_Now
+    time_ratio = (now.hour + now.minute / 60) / 24  # tỉ lệ thời gian trong 24h
+    
+    y_scaled = (
+        total_seconds
+        * (0.9 ** (np.floor(x_curve1 + 0.5) - 0.5))
+        * time_ratio
+    )
+    
+    ax.plot(
+        x_curve1,
+        y_scaled,
+        drawstyle="steps-mid",
+        linestyle="--",
+        linewidth=2
+    )  # plot thứ 2 đã scale theo giờ
 
     # ===== AUTO SCALE Y =====
     ax.set_ylim(0, y_curve.max() * 1.05)
