@@ -17,28 +17,31 @@ def plot_decay_timedelta(Time_Now, Timedeltax, max_x=7, n_times=None):
     x_curve1 = np.linspace(-0.5, max_x + 0.5, 400)
     x_points = np.arange(0, max_x + 1)
 
-    # ===== DECAY LAYER =====
-    # y = (T * decay) - free
-    y_curve = (total_seconds_original * (0.9 ** np.floor(x_curve1))) - free_seconds
-    y_points = (total_seconds_original * (0.9 ** x_points)) - free_seconds
+    # ===== DECAY LAYER (OLD SCALE) =====
+    y_curve_old = (total_seconds_original * (0.9 ** np.floor(x_curve1))) - free_seconds
+    y_curve_old = np.maximum(y_curve_old, 0)
 
-    # Clamp negative values
-    y_curve = np.maximum(y_curve, 0)
-    y_points = np.maximum(y_points, 0)
-
-    total_days = y_curve.max() / 86400 if y_curve.max() > 0 else 0
+    ymax_old = y_curve_old.max()
 
     fig, ax = plt.subplots()
 
-    # ===== STEP PLOT =====
-    y_step = (
-        total_seconds_original *
-        (0.9 ** (np.floor(x_curve1 + 0.5) - 0.5))
-    ) - free_seconds
+    # ===== STEP PLOT (NEW SCALE) =====
+    y_step_new = []
 
-    y_step = np.maximum(y_step, 0)
+    for x in x_curve1:
+        n = math.floor(x + 0.5) - 0.5
+        current_seconds = (total_seconds_original * (0.9 ** n)) - free_seconds
+        current_seconds = max(current_seconds, 0)
 
-    ax.plot(x_curve1, y_step, drawstyle="steps-mid")
+        current_time = Time_Now + timedelta(seconds=current_seconds)
+
+        total_minutes = current_time.hour * 60 + current_time.minute
+        ratio = total_minutes / (24 * 60)
+
+        y_new = ymax_old * ratio
+        y_step_new.append(y_new)
+
+    ax.plot(x_curve1, y_step_new, drawstyle="steps-mid")
 
     # ===== FILL EACH STEP =====
     for n in range(0, max_x + 1):
@@ -48,23 +51,19 @@ def plot_decay_timedelta(Time_Now, Timedeltax, max_x=7, n_times=None):
 
         x_fill = np.array([left, right])
 
-        current_seconds = (
-            total_seconds_original * (0.9 ** n)
-        ) - free_seconds
-
+        current_seconds = (total_seconds_original * (0.9 ** n)) - free_seconds
         current_seconds = max(current_seconds, 0)
-
-        y_fill = np.array([
-            (
-                total_seconds_original *
-                (0.9 ** (n - 0.5))
-            ) - free_seconds
-        ] * 2)
-
-        y_fill = np.maximum(y_fill, 0)
 
         current_time = Time_Now + timedelta(seconds=current_seconds)
 
+        # ===== NEW Y CALCULATION =====
+        total_minutes = current_time.hour * 60 + current_time.minute
+        ratio = total_minutes / (24 * 60)
+        y_new = ymax_old * ratio
+
+        y_fill = np.array([y_new] * 2)
+
+        # ===== COLOR LOGIC =====
         hour = current_time.hour
 
         if 7 <= hour < 22:
@@ -80,7 +79,7 @@ def plot_decay_timedelta(Time_Now, Timedeltax, max_x=7, n_times=None):
 
         ax.text(
             n,
-            y_fill[0] + y_curve.max() * 0.02,
+            y_new + ymax_old * 0.02,
             text_label,
             ha='center',
             va='center',
@@ -89,17 +88,12 @@ def plot_decay_timedelta(Time_Now, Timedeltax, max_x=7, n_times=None):
             zorder=5
         )
 
-    # ===== Y SCALE =====
-    ax.set_ylim(0, y_curve.max() * 1.05 if y_curve.max() > 0 else 1)
-
-    max_days = math.ceil(total_days)
-
-    ax.set_yticks([d * 86400 for d in range(0, max_days + 1)])
-    ax.set_yticklabels([f"{d}D" for d in range(0, max_days + 1)])
+    # ===== NEW Y SCALE =====
+    ax.set_ylim(0, ymax_old * 1.05 if ymax_old > 0 else 1)
 
     ax.set_xlim(-0.5, max_x + 0.5)
     ax.set_xlabel("Quảng cáo")
 
     st.pyplot(fig)
 
-    return [timedelta(seconds=s) for s in y_points]
+    return []
