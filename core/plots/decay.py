@@ -12,22 +12,18 @@ def plot_decay_timedelta(Time_Now, Timedeltax, max_x=7, n_times=None):
     total_seconds = Timedelta.total_seconds()
     total_days = total_seconds / 86400
 
-    # Tạo các điểm nguyên
+    # Các điểm rời rạc
     x_points = np.arange(0, max_x + 1)
     y_points = total_seconds * (0.9 ** x_points)
 
     fig, ax = plt.subplots()
 
-    # Vẽ step centered
-    ax.step(x_points, y_points, where="mid")
-
-    # Clamp bằng cách mở rộng x sang hai bên
-    ax.set_xlim(-0.5, max_x + 0.5)
+    # Vẽ step centered tại mỗi n (tự mở rộng sang n±0.5)
+    ax.step(x_points, y_points, where='mid')
 
     for n, y in zip(x_points, y_points):
 
-        current_seconds = y
-        current_time = Time_Now + timedelta(seconds=current_seconds)
+        current_time = Time_Now + timedelta(seconds=y)
         hour = current_time.hour
 
         if 7 <= hour < 22:
@@ -37,26 +33,24 @@ def plot_decay_timedelta(Time_Now, Timedeltax, max_x=7, n_times=None):
         else:
             fill_color = "orange"
 
-        # Fill tự động theo step-mid
+        # Tô màu tự động khớp step (không cần tính n±0.5)
         ax.fill_between(
-            [n],
-            [y],
+            x_points,
+            y_points,
             0,
-            step="mid",
-            color=fill_color,
-            alpha=1
+            where=(x_points == n),
+            step='mid'
         )
 
-        text_label = current_time.strftime("%H:%M")
-
+        # Đặt text tại đúng tâm bậc
         ax.text(
             n,
             y + y_points.max() * 0.02,
-            text_label,
-            ha="center",
-            va="center",
+            current_time.strftime("%H:%M"),
+            ha='center',
+            va='center',
             fontsize=10,
-            color="black",
+            color='black',
             zorder=5
         )
 
@@ -66,6 +60,7 @@ def plot_decay_timedelta(Time_Now, Timedeltax, max_x=7, n_times=None):
     ax.set_yticks([d * 86400 for d in range(0, max_days + 1)])
     ax.set_yticklabels([f"{d}D" for d in range(0, max_days + 1)])
 
+    ax.set_xlim(-0.5, max_x + 0.5)
     ax.set_xlabel("Quảng cáo")
 
     st.pyplot(fig)
