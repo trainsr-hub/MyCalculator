@@ -74,6 +74,31 @@ def plot_decay_timedelta(Timedeltax, max_x=7, n_times=None):
             zorder=5
         )
 
+# ===== PLOT LAYER THỨ 2 (TIME SCALE) =====
+    y_overlay = []
+
+    for n in range(0, max_x + 1):
+        current_seconds = total_seconds * (0.9 ** n)
+        current_time = Time_Now + timedelta(seconds=current_seconds)
+
+        # tính tỉ lệ trong ngày
+        time_ratio = (current_time.hour + current_time.minute / 60) / 24
+
+        # y mới = ymax_gốc * ratio
+        y_overlay.append(y_curve.max() * time_ratio)
+
+    y_overlay = np.array(y_overlay)
+
+    ax.plot(
+        x_points,
+        y_overlay,
+        drawstyle="steps-mid",
+        linewidth=2,
+        color="blue",
+        zorder=10  # layer cao hơn
+    )
+
+
     # ===== AUTO SCALE Y =====
     ax.set_ylim(0, y_curve.max() * 1.05)
     import math
