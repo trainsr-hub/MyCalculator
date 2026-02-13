@@ -47,13 +47,11 @@ def plot_decay_timedelta(Time_Now, Timedeltax, max_x=7, n_times=None):
         where="mid"
     )
 
-    # ===== 2 HORIZONTAL LINES =====
+    # ===== HORIZONTAL LINE (7h) =====
     y_7 = ymax_old * (7/24)
-
     ax.axhline(y=y_7, linestyle="-", linewidth=1)
 
-
-# ===== FILL EACH STEP =====
+    # ===== FILL EACH STEP =====
     prev_day = 0  # theo dõi ngày trước đó
 
     for n in range(0, max_x + 1):
@@ -80,7 +78,7 @@ def plot_decay_timedelta(Time_Now, Timedeltax, max_x=7, n_times=None):
         else:
             fill_color = "orange"
 
-        # ===== TÔ PHẦN DƯỚI (như cũ) =====
+        # ===== TÔ PHẦN DƯỚI =====
         ax.fill_between(x_fill, y_fill, 0, color=fill_color, alpha=1)
 
         # ===== TÔ PHẦN TRÊN (light blue) =====
@@ -92,7 +90,7 @@ def plot_decay_timedelta(Time_Now, Timedeltax, max_x=7, n_times=None):
             alpha=1
         )
 
-        # ===== TEXT TIME =====
+        # ===== TEXT GIỜ =====
         text_label = current_time.strftime("%H:%M")
 
         ax.text(
@@ -122,3 +120,13 @@ def plot_decay_timedelta(Time_Now, Timedeltax, max_x=7, n_times=None):
             )
 
         prev_day = day_diff
+
+    # ===== Y SCALE =====
+    ax.set_ylim(0, ymax_old * 1.05 if ymax_old > 0 else 1)
+    ax.set_xlim(-0.5, max_x + 0.5)
+    ax.set_xlabel("Quảng cáo")
+    ax.set_yticks([])
+
+    st.pyplot(fig)
+
+    return []
