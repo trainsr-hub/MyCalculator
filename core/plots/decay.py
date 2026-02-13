@@ -52,7 +52,7 @@ def plot_decay_timedelta(Time_Now, Timedeltax, max_x=7, n_times=None):
     ax.axhline(y=y_7, linestyle="-", linewidth=1)
 
     # ===== FILL EACH STEP =====
-    prev_day = 0  # theo dõi ngày trước đó
+    prev_day = 0  # theo dõi số ngày trước đó
 
     for n in range(0, max_x + 1):
 
@@ -104,10 +104,11 @@ def plot_decay_timedelta(Time_Now, Timedeltax, max_x=7, n_times=None):
             zorder=5
         )
 
-        # ===== +nD LOGIC =====
-        day_diff = (current_time.date() - Time_Now.date()).days
+        # ===== +nD LOGIC (DỰA TRÊN 24H THỰC) =====
+        delta_seconds = (current_time - Time_Now).total_seconds()
+        day_diff = int(delta_seconds // 86400)
 
-        if day_diff > prev_day:
+        if day_diff != prev_day:
             ax.text(
                 n,
                 ymax_old * 0.95,
