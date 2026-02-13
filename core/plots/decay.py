@@ -25,11 +25,11 @@ def plot_decay_timedelta(Time_Now, Timedeltax, max_x=7, n_times=None):
 
     fig, ax = plt.subplots()
 
-    # ===== STEP PLOT (NEW SCALE) =====
-    y_step_new = []
+  # ===== STEP VALUES (NEW Y) =====
+    y_steps = []
 
-    for x in x_curve1:
-        n = math.floor(x + 0.5) - 0.5
+    for n in range(0, max_x + 1):
+
         current_seconds = (total_seconds_original * (0.9 ** n)) - free_seconds
         current_seconds = max(current_seconds, 0)
 
@@ -39,9 +39,21 @@ def plot_decay_timedelta(Time_Now, Timedeltax, max_x=7, n_times=None):
         ratio = total_minutes / (24 * 60)
 
         y_new = ymax_old * ratio
-        y_step_new.append(y_new)
+        y_steps.append(y_new)
 
-    ax.plot(x_curve1, y_step_new, drawstyle="steps-mid")
+    # Convert to step-ready arrays
+    x_step = np.arange(-0.5, max_x + 0.5, 1)
+    y_step_plot = np.repeat(y_steps, 2)
+
+    # Adjust x to match repeated y
+    x_step_plot = np.repeat(np.arange(0, max_x + 1), 2)
+    x_step_plot = np.insert(x_step_plot, 0, -0.5)
+    x_step_plot = np.append(x_step_plot, max_x + 0.5)
+
+    y_step_plot = np.insert(y_step_plot, 0, y_steps[0])
+    y_step_plot = np.append(y_step_plot, y_steps[-1])
+
+    ax.plot(x_step_plot, y_step_plot)
 
     # ===== FILL EACH STEP =====
     for n in range(0, max_x + 1):
