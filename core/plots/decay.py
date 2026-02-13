@@ -9,34 +9,22 @@ def plot_decay_timedelta(Time_Now, Timedeltax, max_x=7, n_times=None):
     free_time = max(Timedeltax * 0.05, timedelta(minutes=5))
     Timedelta = Timedeltax - free_time
 
-    x_curve1 = np.linspace(-0.5, max_x + 0.5, 400)
-    x_curve = np.floor(x_curve1)
-    x_points = np.arange(0, max_x + 1)
-
     total_seconds = Timedelta.total_seconds()
     total_days = total_seconds / 86400
 
-    y_curve = total_seconds * (0.9 ** np.floor(x_curve))
+    # Tạo các điểm rời rạc
+    x_points = np.arange(0, max_x + 1)
     y_points = total_seconds * (0.9 ** x_points)
 
     fig, ax = plt.subplots()
 
-    ax.plot(
-        x_curve1,
-        total_seconds * (0.9 ** (np.floor(x_curve1 + 0.5) - 0.5)),
-        drawstyle="steps-mid"
-    )
+    # Vẽ step chuẩn (không tự tính lại hình học)
+    ax.step(x_points, y_points, where="mid")
 
-    for n in range(0, max_x + 1):
-        left = max(n - 0.5, -0.5)
-        right = min(n + 0.5, max_x + 0.5)
+    for n, y in zip(x_points, y_points):
 
-        x_fill = np.array([left, right])
-        y_fill = np.array([total_seconds * (0.9 ** (n - 0.5))] * 2)
-
-        current_seconds = total_seconds * (0.9 ** n)
+        current_seconds = y
         current_time = Time_Now + timedelta(seconds=current_seconds)
-
         hour = current_time.hour
 
         if 7 <= hour < 22:
@@ -46,14 +34,21 @@ def plot_decay_timedelta(Time_Now, Timedeltax, max_x=7, n_times=None):
         else:
             fill_color = "orange"
 
-        ax.fill_between(x_fill, y_fill, 0, color=fill_color, alpha=1)
+        # Fill tự khớp theo step
+        ax.fill_between(
+            [n],
+            [y],
+            0,
+            step="mid",
+            color=fill_color,
+            alpha=1
+        )
 
-        text_label = current_time.strftime("%H:%M")
-
+        # Text đặt ngay trên điểm step
         ax.text(
             n,
-            total_seconds * (0.9 ** (n - 0.5)) + y_curve.max() * 0.02,
-            text_label,
+            y + y_points.max() * 0.02,
+            current_time.strftime("%H:%M"),
             ha='center',
             va='center',
             fontsize=10,
@@ -61,7 +56,7 @@ def plot_decay_timedelta(Time_Now, Timedeltax, max_x=7, n_times=None):
             zorder=5
         )
 
-    ax.set_ylim(0, y_curve.max() * 1.05)
+    ax.set_ylim(0, y_points.max() * 1.05)
 
     max_days = math.ceil(total_days)
     ax.set_yticks([d * 86400 for d in range(0, max_days + 1)])
