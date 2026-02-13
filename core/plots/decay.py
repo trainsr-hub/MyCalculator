@@ -111,7 +111,7 @@ def plot_decay_timedelta(Time_Now, Timedeltax, max_x=7, n_times=None):
         if day_diff != prev_day:
             ax.text(
                 n,
-                ymax_old * 0.95,
+                ymax_old * 0.25,
                 f"+{day_diff}D",
                 ha='center',
                 va='center',
