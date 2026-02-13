@@ -29,6 +29,21 @@ def plot_decay_timedelta(Timedeltax, max_x=7, n_times=None):
 
     # ===== VẼ ĐƯỜNG MƯỢT =====
     ax.plot(x_curve1, total_seconds * (0.9 ** (np.floor(x_curve1 + 0.5) - 0.5)), drawstyle="steps-mid")
+
+# ===== PLOT THỨ 2 - SCALE THEO GIỜ PHÚT =====
+    now = Time_Now  # dùng global hiện tại
+    minute_of_day = now.hour * 60 + now.minute
+    ratio = minute_of_day / (24 * 60)
+
+    ymax_old = y_curve.max()
+    y_scaled = ymax_old * ratio * (0.9 ** (np.floor(x_curve1 + 0.5) - 0.5))  # giữ cùng step shape
+
+    ax.plot(
+        x_curve1,
+        y_scaled,
+        drawstyle="steps-mid",
+        linestyle="--"
+    )
     # ===== TÔ TỪNG STEP =====
     for n in range(0, max_x + 1):
 
@@ -74,24 +89,6 @@ def plot_decay_timedelta(Timedeltax, max_x=7, n_times=None):
             zorder=5
         )
 
-
-# ===== SCALE THEO GIỜ HIỆN TẠI =====
-    now = Time_Now
-    time_ratio = (now.hour + now.minute / 60) / 24  # tỉ lệ thời gian trong 24h
-    
-    y_scaled = (
-        total_seconds
-        * (0.9 ** (np.floor(x_curve1 + 0.5) - 0.5))
-        * time_ratio
-    )
-    
-    ax.plot(
-        x_curve1,
-        y_scaled,
-        drawstyle="steps-mid",
-        linestyle="--",
-        linewidth=2
-    )  # plot thứ 2 đã scale theo giờ
 
     # ===== AUTO SCALE Y =====
     ax.set_ylim(0, y_curve.max() * 1.05)
