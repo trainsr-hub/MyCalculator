@@ -40,14 +40,19 @@ def plot_decay_timedelta(Time_Now, Timedeltax, max_x=7, n_times=None):
 
     y_steps = np.array(y_steps)
 
-    # ===== VẼ STEP LINE DÙNG CHÍNH Y CỦA FILL =====
+    # ===== STEP LINE =====
     ax.step(
         x_points,
         y_steps,
-        where="mid"  # dùng cùng logic với fill
+        where="mid"
     )
-    ax.axhline(y=ymax_old * (22/24), linestyle="-", linewidth=1)
-    ax.axhline(y=ymax_old * (7/24), linestyle="-", linewidth=1)
+
+    # ===== 2 HORIZONTAL LINES =====
+    y_22 = ymax_old * (22/24)
+    y_7 = ymax_old * (7/24)
+
+    ax.axhline(y=y_22, linestyle="-", linewidth=1)
+    ax.axhline(y=y_7, linestyle="-", linewidth=1)
 
     # ===== FILL EACH STEP =====
     for n in range(0, max_x + 1):
@@ -90,10 +95,30 @@ def plot_decay_timedelta(Time_Now, Timedeltax, max_x=7, n_times=None):
 
     # ===== Y SCALE =====
     ax.set_ylim(0, ymax_old * 1.05 if ymax_old > 0 else 1)
-
     ax.set_xlim(-0.5, max_x + 0.5)
     ax.set_xlabel("Quảng cáo")
-    ax.set_yticks([])  # Ẩn toàn bộ tick trên trục Y
+    ax.set_yticks([])
+
+    # ===== HATCH ZONES =====
+    ax.fill_between(
+        [-0.5, max_x + 0.5],
+        y_22,
+        ax.get_ylim()[1],
+        hatch="/",
+        facecolor="none",
+        edgecolor="gray",
+        linewidth=0
+    )  # Vùng phía trên 22h
+
+    ax.fill_between(
+        [-0.5, max_x + 0.5],
+        0,
+        y_7,
+        hatch="/",
+        facecolor="none",
+        edgecolor="gray",
+        linewidth=0
+    )  # Vùng phía dưới 7h
 
     st.pyplot(fig)
 
