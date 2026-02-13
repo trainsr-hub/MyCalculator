@@ -106,7 +106,7 @@ def plot_decay_timedelta(Time_Now, Timedeltax, max_x=7, n_times=None):
 
         # ===== +nD LOGIC (DỰA TRÊN 24H THỰC) =====
         delta_seconds = (current_time - Time_Now).total_seconds()
-        day_diff = int(delta_seconds // 86400)
+        day_diff = (current_time.date() - Time_Now.date()).days
 
         if day_diff != prev_day:
             ax.text(
