@@ -37,6 +37,6 @@ def render():
         show_boxed_text("Timer", format_duration(Timer), "30px", bg_color="#8f8f8f")
 
     time_stamp = select_duration(2, "time_stamp")
-    plot_decay_timedelta(Timedeltax=duration, n_times=time_stamp)
+    plot_decay_timedelta(Time_Now, Timedeltax=duration, n_times=time_stamp)
 
     show_boxed_text("Free", f"{format_duration(Free_Time)}", "30px", bg_color=colorfree, description=finish_at)
