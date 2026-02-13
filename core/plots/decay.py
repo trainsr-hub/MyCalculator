@@ -48,10 +48,8 @@ def plot_decay_timedelta(Time_Now, Timedeltax, max_x=7, n_times=None):
     )
 
     # ===== 2 HORIZONTAL LINES =====
-    y_22 = ymax_old * (22/24)
     y_7 = ymax_old * (7/24)
 
-    ax.axhline(y=y_22, linestyle="-", linewidth=1)
     ax.axhline(y=y_7, linestyle="-", linewidth=1)
 
     # ===== FILL EACH STEP =====
@@ -100,15 +98,6 @@ def plot_decay_timedelta(Time_Now, Timedeltax, max_x=7, n_times=None):
     ax.set_yticks([])
 
     # ===== HATCH ZONES =====
-    ax.fill_between(
-        [-0.5, max_x + 0.5],
-        y_22,
-        ax.get_ylim()[1],
-        hatch="/",
-        facecolor="none",
-        edgecolor="gray",
-        linewidth=0
-    )  # Vùng phía trên 22h
 
     ax.fill_between(
         [-0.5, max_x + 0.5],
