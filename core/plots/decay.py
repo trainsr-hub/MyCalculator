@@ -12,31 +12,22 @@ def plot_decay_timedelta(Time_Now, Timedeltax, max_x=7, n_times=None):
     total_seconds = Timedelta.total_seconds()
     total_days = total_seconds / 86400
 
+    # Tạo các điểm nguyên
     x_points = np.arange(0, max_x + 1)
     y_points = total_seconds * (0.9 ** x_points)
 
-    y_max_old = y_points.max()
-
-    y_scaled = []
-    current_times = []
-
-    for y in y_points:
-        current_time = Time_Now + timedelta(seconds=y)
-        current_times.append(current_time)
-
-        hour_fraction = current_time.hour + current_time.minute / 60
-        new_y = y_max_old * (hour_fraction / 24)  # chỉnh cao độ
-        y_scaled.append(new_y)
-
-    y_scaled = np.array(y_scaled)
-
     fig, ax = plt.subplots()
 
-    # ---- vẽ step kéo dài đủ biên ----
-    ax.step(x_points, y_scaled, where="mid")
+    # Vẽ step centered
+    ax.step(x_points, y_points, where="mid")
 
-    for n, y_new, current_time in zip(x_points, y_scaled, current_times):
+    # Clamp bằng cách mở rộng x sang hai bên
+    ax.set_xlim(-0.5, max_x + 0.5)
 
+    for n, y in zip(x_points, y_points):
+
+        current_seconds = y
+        current_time = Time_Now + timedelta(seconds=current_seconds)
         hour = current_time.hour
 
         if 7 <= hour < 22:
@@ -46,33 +37,30 @@ def plot_decay_timedelta(Time_Now, Timedeltax, max_x=7, n_times=None):
         else:
             fill_color = "orange"
 
-        # ---- mở rộng vùng fill sang x±0.5 ----
-        x_fill = [n - 0.5, n + 0.5]
-        y_fill = [y_new, y_new]
-
+        # Fill tự động theo step-mid
         ax.fill_between(
-            x_fill,
-            y_fill,
+            [n],
+            [y],
             0,
+            step="mid",
             color=fill_color,
             alpha=1
         )
 
+        text_label = current_time.strftime("%H:%M")
+
         ax.text(
             n,
-            y_new + y_scaled.max() * 0.02,
-            current_time.strftime("%H:%M"),
-            ha='center',
-            va='center',
+            y + y_points.max() * 0.02,
+            text_label,
+            ha="center",
+            va="center",
             fontsize=10,
-            color='black',
+            color="black",
             zorder=5
         )
 
-    # ---- mở rộng trục x ----
-    ax.set_xlim(-0.5, max_x + 0.5)
-
-    ax.set_ylim(0, y_scaled.max() * 1.05)
+    ax.set_ylim(0, y_points.max() * 1.05)
 
     max_days = math.ceil(total_days)
     ax.set_yticks([d * 86400 for d in range(0, max_days + 1)])
