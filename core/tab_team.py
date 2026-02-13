@@ -1,73 +1,64 @@
 import streamlit as st
-from datetime import timedelta
-import numpy as np
-import matplotlib.pyplot as plt
-import math
+from .utils import show_boxed_text, show_graph
 
+def render():
+    Rank = {
+        "Dominator 2K5 ~ Tape": 7100,
+        "Dominator 1K5 ~ I-Rex": 6722
+    }
 
-def plot_decay_timedelta(Time_Now, Timedeltax, max_x=7, n_times=None):
-    free_time = max(Timedeltax * 0.05, timedelta(minutes=5))
-    Timedelta = Timedeltax - free_time
+    BasePower = {
+        "Dominator 2K5 ~ Tape": (3076, 972),
+        "Dominator 1K5 ~ I-Rex": (2517, 962)
+    }
 
-    total_seconds = Timedelta.total_seconds()
-    total_days = total_seconds / 86400
+    Flock = {
+        "Sinosauropteryx lv1": (477, 149),
+        "Preondactylus lv1": (282, 171),
+        "Compsognathus lv1": (249, 95),
+        "Sinosauropteryx lv5": (583, 182),
+        "Rodrigues Solitaire lv10": (715, 224),
+        "Tuojiangosaurus lv1": (42, 13)
+    }
 
-    # Tạo các điểm nguyên
-    x_points = np.arange(0, max_x + 1)
-    y_points = total_seconds * (0.9 ** x_points)
+    selected_rank = st.selectbox("Rank", options=list(Rank.keys()), index=1)
+    selected_flock = st.selectbox("Flock", options=list(Flock.keys()), index=0)
 
-    fig, ax = plt.subplots()
+    st.markdown("---")
 
-    # Vẽ step centered
-    ax.step(x_points, y_points, where="mid")
+    col1, col2 = st.columns(2)
 
-    # Clamp bằng cách mở rộng x sang hai bên
-    ax.set_xlim(-0.5, max_x + 0.5)
+    with col1:
+        Health = st.number_input("Flock Health", min_value=0, value=Flock[selected_flock][0], step=50)
 
-    for n, y in zip(x_points, y_points):
+    with col2:
+        Attack = st.number_input("Flock Attack", min_value=0, value=Flock[selected_flock][1], step=25)
 
-        current_seconds = y
-        current_time = Time_Now + timedelta(seconds=current_seconds)
-        hour = current_time.hour
+    st.markdown("---")
 
-        if 7 <= hour < 22:
-            fill_color = "lime"
-        elif 0 <= hour < 7:
-            fill_color = "red"
-        else:
-            fill_color = "orange"
+    Main_Health = st.number_input("Ace Health", min_value=0, value=0, step=50)
+    Main_Attack = st.number_input("Ace Attack", min_value=0, value=0, step=25)
 
-        # Fill tự động theo step-mid
-        ax.fill_between(
-            [n],
-            [y],
-            0,
-            step="mid",
-            color=fill_color,
-            alpha=1
-        )
+    max_Fero = Rank[selected_rank]
+    Team_Fero = int(Health + Main_Health + 3.2 * Attack + 3.2 * Main_Attack)
+    remain_Fero = max_Fero - Team_Fero
 
-        text_label = current_time.strftime("%H:%M")
+    st.markdown("---")
 
-        ax.text(
-            n,
-            y + y_points.max() * 0.02,
-            text_label,
-            ha="center",
-            va="center",
-            fontsize=10,
-            color="black",
-            zorder=5
-        )
+    defaultATK3 = remain_Fero/9 if (850 - Main_Attack < 266) else 850 - Main_Attack
+    Health3 = st.number_input("3rd Health", min_value=0,
+                              value=min(1300, max(int(remain_Fero/3), 2100 - Main_Health)),
+                              step=50)
 
-    ax.set_ylim(0, y_points.max() * 1.05)
+    Attack3 = st.number_input("3rd Attack", min_value=0,
+                              value=max(0, int(defaultATK3)),
+                              step=15)
 
-    max_days = math.ceil(total_days)
-    ax.set_yticks([d * 86400 for d in range(0, max_days + 1)])
-    ax.set_yticklabels([f"{d}D" for d in range(0, max_days + 1)])
+    show_boxed_text(
+        "Remaining",
+        f"{int(remain_Fero - Health3 - Attack3 * 3.2)}",
+        "30px",
+        bg_color="#fc6a03"
+    )
 
-    ax.set_xlabel("Quảng cáo")
-
-    st.pyplot(fig)
-
-    return [timedelta(seconds=s) for s in y_points]
+    show_graph(int(remain_Fero), Attack3, Health3, Main_Attack)
