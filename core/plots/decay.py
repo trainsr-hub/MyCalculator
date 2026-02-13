@@ -17,9 +17,7 @@ def plot_decay_timedelta(Time_Now, Timedeltax, max_x=7, n_times=None):
 
     y_max_old = y_points.max()
 
-    # Tạo mảng y mới theo công thức yêu cầu
     y_scaled = []
-
     current_times = []
 
     for y in y_points:
@@ -27,16 +25,14 @@ def plot_decay_timedelta(Time_Now, Timedeltax, max_x=7, n_times=None):
         current_times.append(current_time)
 
         hour_fraction = current_time.hour + current_time.minute / 60
-
-        # ---- chỉnh cao độ theo yêu cầu ----
-        new_y = y_max_old * (hour_fraction / 24)  # y mới = ymax cũ * (giờ+phút)/24
+        new_y = y_max_old * (hour_fraction / 24)  # chỉnh cao độ
         y_scaled.append(new_y)
 
     y_scaled = np.array(y_scaled)
 
     fig, ax = plt.subplots()
 
-    # Vẽ step với y mới
+    # ---- vẽ step kéo dài đủ biên ----
     ax.step(x_points, y_scaled, where="mid")
 
     for n, y_new, current_time in zip(x_points, y_scaled, current_times):
@@ -50,11 +46,14 @@ def plot_decay_timedelta(Time_Now, Timedeltax, max_x=7, n_times=None):
         else:
             fill_color = "orange"
 
+        # ---- mở rộng vùng fill sang x±0.5 ----
+        x_fill = [n - 0.5, n + 0.5]
+        y_fill = [y_new, y_new]
+
         ax.fill_between(
-            [n],
-            [y_new],
+            x_fill,
+            y_fill,
             0,
-            step="mid",
             color=fill_color,
             alpha=1
         )
@@ -70,13 +69,15 @@ def plot_decay_timedelta(Time_Now, Timedeltax, max_x=7, n_times=None):
             zorder=5
         )
 
+    # ---- mở rộng trục x ----
+    ax.set_xlim(-0.5, max_x + 0.5)
+
     ax.set_ylim(0, y_scaled.max() * 1.05)
 
     max_days = math.ceil(total_days)
     ax.set_yticks([d * 86400 for d in range(0, max_days + 1)])
     ax.set_yticklabels([f"{d}D" for d in range(0, max_days + 1)])
 
-    ax.set_xlim(-0.5, max_x + 0.5)
     ax.set_xlabel("Quảng cáo")
 
     st.pyplot(fig)
