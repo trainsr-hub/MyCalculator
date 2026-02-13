@@ -1,3 +1,9 @@
+from datetime import datetime, timedelta
+
+Time_Now = datetime.now() + timedelta(hours=7)  # current time + 7 hours
+
+
+
 def plot_decay_timedelta(Timedeltax, max_x=7, n_times=None):
     global Time_Now
     free_time = max(Timedeltax * 0.05, timedelta(minutes=5))
