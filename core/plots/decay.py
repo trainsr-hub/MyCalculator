@@ -46,6 +46,8 @@ def plot_decay_timedelta(Time_Now, Timedeltax, max_x=7, n_times=None):
         y_steps,
         where="mid"  # dùng cùng logic với fill
     )
+    ax.axhline(y=ymax_old * (22/24), linestyle="-", linewidth=1)
+    ax.axhline(y=ymax_old * (7/24), linestyle="-", linewidth=1)
 
     # ===== FILL EACH STEP =====
     for n in range(0, max_x + 1):
