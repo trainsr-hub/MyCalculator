@@ -12,19 +12,38 @@ def plot_decay_timedelta(Time_Now, Timedeltax, max_x=7, n_times=None):
     total_seconds = Timedelta.total_seconds()
     total_days = total_seconds / 86400
 
-    # Tạo các điểm rời rạc
     x_points = np.arange(0, max_x + 1)
-    y_points = total_seconds * (0.9 ** x_points)
+
+    # vẫn dùng decay để tính current_time
+    decay_values = total_seconds * (0.9 ** x_points)
+
+    # y_max cũ (chuẩn tham chiếu)
+    y_max_old = decay_values.max()
+
+    y_points = []
 
     fig, ax = plt.subplots()
 
-    # Vẽ step chuẩn (không tự tính lại hình học)
+    for n, decay_sec in zip(x_points, decay_values):
+
+        current_time = Time_Now + timedelta(seconds=decay_sec)
+
+        # ---- PHẦN CAO ĐỘ MỚI ----
+        hour_fraction = (
+            current_time.hour + current_time.minute / 60
+        ) / 24
+
+        y_new = y_max_old * hour_fraction
+        y_points.append(y_new)
+        # -------------------------
+
+    y_points = np.array(y_points)
+
     ax.step(x_points, y_points, where="mid")
 
     for n, y in zip(x_points, y_points):
 
-        current_seconds = y
-        current_time = Time_Now + timedelta(seconds=current_seconds)
+        current_time = Time_Now + timedelta(seconds=decay_values[n])
         hour = current_time.hour
 
         if 7 <= hour < 22:
@@ -34,7 +53,6 @@ def plot_decay_timedelta(Time_Now, Timedeltax, max_x=7, n_times=None):
         else:
             fill_color = "orange"
 
-        # Fill tự khớp theo step
         ax.fill_between(
             [n],
             [y],
@@ -44,7 +62,6 @@ def plot_decay_timedelta(Time_Now, Timedeltax, max_x=7, n_times=None):
             alpha=1
         )
 
-        # Text đặt ngay trên điểm step
         ax.text(
             n,
             y + y_points.max() * 0.02,
@@ -58,13 +75,9 @@ def plot_decay_timedelta(Time_Now, Timedeltax, max_x=7, n_times=None):
 
     ax.set_ylim(0, y_points.max() * 1.05)
 
-    max_days = math.ceil(total_days)
-    ax.set_yticks([d * 86400 for d in range(0, max_days + 1)])
-    ax.set_yticklabels([f"{d}D" for d in range(0, max_days + 1)])
-
     ax.set_xlim(-0.5, max_x + 0.5)
     ax.set_xlabel("Quảng cáo")
 
     st.pyplot(fig)
 
-    return [timedelta(seconds=s) for s in y_points]
+    return y_points
