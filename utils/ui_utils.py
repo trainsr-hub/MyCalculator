@@ -52,3 +52,43 @@ def select_duration(num_selectors, key_prefix):
         raise ValueError("num_selectors must be 2 or 3")
 
     return timedelta(days=days, hours=hours, minutes=minutes)
+
+
+
+
+def show_boxed_text(  
+    label,  
+    value,  
+    font_size="20px",  
+    text_color="white",  
+    bg_color="#333333",
+    description=None  # new optional parameter, default keeps old calls working
+):  
+    # extract numeric part from font_size to calculate 1/4 size for description
+    try:
+        base_size = float(font_size.replace("px", ""))  # assume px unit
+        desc_size = f"{base_size / 2}px" 
+    except ValueError:
+        desc_size = "12px"  # fallback size if font_size is not numeric
+
+    st.markdown(  
+        f"""  
+        <div style="  
+            display: flex;  
+            flex-direction: column;  /* stack value and description vertically */
+            justify-content: center;  
+            align-items: center;  /* center horizontally */
+            background-color: {bg_color};  
+            color: {text_color};  
+            padding: 12px;  
+            border-radius: 8px;  
+            margin: 6px 0;  
+        ">  
+            <div style="font-size: {font_size}; font-weight: 600;">
+                {label}: {value}
+            </div>
+            {f'<div style="font-size: {desc_size}; opacity: 0.85; margin-top: 4px;">{description}</div>' if description else ''}
+        </div>  
+        """,  
+        unsafe_allow_html=True  
+    )
