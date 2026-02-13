@@ -80,5 +80,6 @@ def plot_decay_timedelta(Time_Now, Timedeltax, max_x=7, n_times=None):
     ax.set_xlabel("Quảng cáo x")
 
     st.pyplot(fig)
+    st.markdown("---")
 
     return [timedelta(seconds=s) for s in y_points]
