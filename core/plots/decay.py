@@ -91,6 +91,7 @@ def plot_decay_timedelta(Time_Now, Timedeltax, max_x=7, n_times=None):
 
     ax.set_xlim(-0.5, max_x + 0.5)
     ax.set_xlabel("Quảng cáo")
+    ax.set_yticks([])  # Ẩn toàn bộ tick trên trục Y
 
     st.pyplot(fig)
 
