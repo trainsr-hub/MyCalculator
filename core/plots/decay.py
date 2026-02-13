@@ -77,7 +77,7 @@ def plot_decay_timedelta(Time_Now, Timedeltax, max_x=7, n_times=None):
     ax.set_yticklabels([f"{d}D" for d in range(0, max_days + 1)])
 
     ax.set_xlim(-0.5, max_x + 0.5)
-    ax.set_xlabel("Quảng cáo")
+    ax.set_xlabel("Quảng cáo x")
 
     st.pyplot(fig)
 
