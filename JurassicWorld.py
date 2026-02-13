@@ -2,9 +2,105 @@ import streamlit as st
 from datetime import timedelta, datetime  # ← thêm dòng này để dùng timedelta  
 import numpy as np  
 import matplotlib.pyplot as plt  
-from hehetool import plot_decay_timedelta
 
-Time_Now = datetime.now() + timedelta(hours=7)  # current time + 7 hours
+  
+Time_Now = datetime.now() + timedelta(hours=7)  
+
+
+
+def plot_decay_timedelta(Timedeltax, max_x=7, n_times=None):
+    global Time_Now
+    free_time = max(Timedeltax * 0.05, timedelta(minutes=5))
+    Timedelta = Timedeltax - free_time
+
+    # ===== TẠO X LINSPACE MỊN =====
+    x_curve1 = np.linspace(-0.5, max_x + 0.5, 400)  # đường cong mượt
+    x_curve = np.floor(x_curve1)
+    x_points = np.arange(0, max_x + 1)    # các điểm nguyên
+
+    total_seconds = Timedelta.total_seconds()
+    total_days = total_seconds/86400
+  # đổi sang ngày ngay từ đầu
+
+    y_curve = total_seconds * (0.9 ** np.floor(x_curve))
+    y_points = total_seconds * (0.9 ** x_points)
+
+    fig, ax = plt.subplots()
+
+    # ===== VẼ ĐƯỜNG MƯỢT =====
+    ax.plot(x_curve1, total_seconds * (0.9 ** (np.floor(x_curve1 + 0.5) - 0.5)), drawstyle="steps-mid")
+    # ===== TÔ TỪNG STEP =====
+    for n in range(0, max_x + 1):
+
+        left = n - 0.5
+        right = n + 0.5
+
+        left = max(left, -0.5)
+        right = min(right, max_x + 0.5)
+
+        x_fill = np.array([left, right])  # giữ tên biến cũ
+        y_fill = np.array([total_seconds * (0.9 ** (n - 0.5))] * 2)  # digital height
+        current_seconds = total_seconds * (0.9 ** n)
+        current_time = Time_Now + timedelta(seconds=current_seconds)
+
+        hour = current_time.hour
+
+        if 7 <= hour < 22:
+            fill_color = "lime"
+        elif 0 <= hour < 7:
+            fill_color = "red"
+        else:
+            fill_color = "orange"
+
+        ax.fill_between(
+            x_fill,
+            y_fill,
+            0,
+            color=fill_color,
+            alpha=1
+        )
+
+        # ===== TEXT =====
+        text_label = day_diff = current_time.strftime("%H:%M")  # giờ:phút định dạng 12h
+
+        ax.text(
+            n,
+            total_seconds * (0.9 ** (n - 0.5)) + y_curve.max() * 0.02,
+            text_label,
+            ha='center',
+            va='center',
+            fontsize=10,
+            color='black',
+            zorder=5
+        )
+
+    # ===== AUTO SCALE Y =====
+    ax.set_ylim(0, y_curve.max() * 1.05)
+    import math
+    max_days = math.ceil(total_days)
+    ax.set_yticks([d * 86400 for d in range(0, max_days + 1)])
+    ax.set_yticklabels([f"{d}D" for d in range(0, max_days + 1)])
+    for d in range(1, max_days + 1):
+        ax.hlines(
+            d * 86400,
+            -0.5,
+            min(
+                math.log((d * 86400) / total_seconds) / math.log(0.9),
+                max_x + 0.5
+            ),
+            linestyles="solid",
+            color="black",
+            alpha=0
+        )
+
+    ax.set_xlim(-0.5, max_x + 0.5)
+    # ax.yaxis.set_visible(False)
+
+    ax.set_xlabel("Quảng cáo")
+
+    st.pyplot(fig)
+
+    return [timedelta(seconds=s) for s in y_points]
 
 
 def show_legend():  
