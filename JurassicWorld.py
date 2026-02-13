@@ -4,6 +4,8 @@ import numpy as np
 import matplotlib.pyplot as plt  
 from hehetool import plot_decay_timedelta
 
+Time_Now = datetime.now() + timedelta(hours=7)  # current time + 7 hours
+
 
 def show_legend():  
   
