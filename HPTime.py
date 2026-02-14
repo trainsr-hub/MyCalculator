@@ -113,7 +113,7 @@ if data:
         ax.text(
             5,                     # x = 5
             mid_val,               # y = midpoint
-            f"{min_val} ~ {mid_val} ~ {max_val}",
+            f"{min_val:.2} ~ {mid_val:.2} ~ {max_val:.2}",
             ha="center",
             va="center",
             bbox=dict(facecolor="white", alpha=0.8)
