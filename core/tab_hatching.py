@@ -1,14 +1,13 @@
 import streamlit as st
 from datetime import timedelta, datetime
 from .utils import (
-    Time_Now,
     select_duration,
     format_duration,
     show_boxed_text,
     plot_decay_timedelta
 )
 
-def render():
+def render(Time_Now):
     duration = select_duration(3, "hatchingtime")
 
     if duration != timedelta(0):
