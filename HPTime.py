@@ -31,7 +31,7 @@ while True:
         data.append((health, minutes))
         index += 1
     else:
-        break  # stop loop when one equals 0
+        break
 
 
 # ===== Calculation & Visualization =====
@@ -53,7 +53,6 @@ if data:
 
     if min_val <= max_val:
 
-        # Create figure (single plot only)
         fig, ax = plt.subplots()
 
         x_min, x_max = 0, 10
@@ -65,8 +64,7 @@ if data:
 
         x = np.linspace(x_min, x_max, 300)
 
-        # ===== Draw individual tuple regions FIRST =====
-        # (so they can be overridden later by sky blue region)
+        # ===== Individual tuple regions =====
         colors = plt.cm.tab10(np.linspace(0, 1, len(data)))
 
         for i, (health, minutes) in enumerate(data):
@@ -79,8 +77,7 @@ if data:
                 upper,
                 alpha=0.3,
                 color=colors[i]
-            )  # each later tuple overlays previous ones
-
+            )
 
         # ===== Hatch outside valid region =====
         ax.fill_between(
@@ -101,13 +98,25 @@ if data:
             facecolor="none"
         )
 
-        # ===== Sky blue valid intersection region (draw LAST so it stays on top) =====
+        # ===== Sky blue valid region =====
         ax.fill_between(
             x,
             min_val,
             max_val,
             color="skyblue",
             alpha=0.6
+        )
+
+        # ===== Annotation instead of st.code =====
+        mid_val = (max_val + min_val) / 2
+
+        ax.text(
+            5,                     # x = 5
+            mid_val,               # y = midpoint
+            f"{min_val} ~ {mid_val} ~ {max_val}",
+            ha="center",
+            va="center",
+            bbox=dict(facecolor="white", alpha=0.8)
         )
 
         ax.set_xlabel("X")
