@@ -9,9 +9,10 @@ from .utils import (
 
 def render(Time_Now):
     duration = select_duration(3, "hatchingtime")
+    default_ads = 7 if duration >= timedelta(days=5) else 0  # 7 when duration ≥ 5 days, otherwise 0
 
     if duration != timedelta(0):
-        ads = st.number_input("🎬 Ads", min_value=0, value=0, max_value=10, step=1)
+        ads = st.number_input("🎬 Ads", min_value=0, value=default_ads, max_value=10, step=1)
     else:
         ads = 1
 
