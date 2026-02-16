@@ -45,7 +45,7 @@ def render():
 
     st.markdown("---")
 
-    defaultATK3 = remain_Fero/9 if (900 - Main_Attack < 266) else max(320, 900 - Main_Attack)
+    defaultATK3 = remain_Fero/9 if (900 - Main_Attack < 380) else max(380, 900 - Main_Attack)
     Health3 = st.number_input("3rd Health", min_value=0,
                               value=min(1300, max(int(remain_Fero/3), 2100 - Main_Health)),
                               step=50)
