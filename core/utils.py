@@ -171,7 +171,7 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
         ax.scatter(x_point, y_point, s=100, zorder=5)          
 
         ax.annotate(          
-            f"({x_point}, {y_point})",          
+            f"\n({x_point}, {y_point})",          
             (x_point, y_point),          
             xytext=(5, 5),          
             textcoords="offset points"          
