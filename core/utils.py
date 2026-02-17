@@ -164,7 +164,7 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
     if Optimal_x is not None:
 
         golden_start = max(400, 800 - Optimal_x)
-        golden_end   = min(700, 1100 - Optimal_x)
+        golden_end   = min(700, 1200 - Optimal_x)
 
         # Giới hạn trong miền hiển thị
         golden_start = max(0, min(x_max, golden_start))
@@ -183,7 +183,7 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
                 x[golden_mask],
                 0,
                 y[golden_mask],
-                hatch='*',              # Matplotlib không có "star"
+                hatch='/',          
                 facecolor='none',
                 edgecolor='gold',       # màu vàng golden
                 linewidth=0
