@@ -183,7 +183,7 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
                 x[golden_mask],
                 0,
                 y[golden_mask],
-                hatch='/',          
+                hatch='*',          
                 facecolor='none',
                 edgecolor='gold',       # màu vàng golden
                 linewidth=0
@@ -250,7 +250,7 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
         ax.annotate(          
             f"\n({x_point}, {y_point})",          
             (x_point, y_point),
-            color="white",          
+            color="black",          
             xytext=(5, 5),          
             textcoords="offset points"          
         )          
@@ -264,7 +264,7 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
         ax.annotate(          
             f"Máu trâu\n({x_point}, {y_intersect})",          
             (x_point, y_intersect),
-            color="white",          
+            color="black",          
             xytext=(5, -25),          
             textcoords="offset points"          
         )          
@@ -275,7 +275,7 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
         ax.annotate(          
             f"Damage to\n({x_intersect}, {y_point})",          
             (x_intersect, y_point),  
-            color="white",        
+            color="black",        
             xytext=(5, 10),          
             textcoords="offset points"          
         )          
