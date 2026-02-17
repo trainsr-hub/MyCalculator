@@ -188,23 +188,29 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
                 edgecolor='gold',       # màu vàng golden
                 linewidth=0
             )
-       
+
+
 # =========================
-            # 2 ĐƯỜNG VIỀN BAO VÙNG GOLDEN
+            # 2 ĐƯỜNG VIỀN GIỚI HẠN THEO VÙNG GOLDEN
             # =========================
 
-            ax.axvline(
-                x=golden_start,
-                color='gold',      # cùng màu hatch golden
+            y_start = C - 3.2 * golden_start  # chiều cao tại golden_start
+            y_end   = C - 3.2 * golden_end    # chiều cao tại golden_end
+
+            # Vẽ đoạn thẳng đứng từ 0 -> y(x)
+            ax.plot(
+                [golden_start, golden_start],
+                [0, y_start],
+                color='gold',
                 linewidth=2
             )
 
-            ax.axvline(
-                x=golden_end,
-                color='gold',      # cùng màu hatch golden
+            ax.plot(
+                [golden_end, golden_end],
+                [0, y_end],
+                color='gold',
                 linewidth=2
             )
-
 
             # =========================
             # CHÚ THÍCH KHOẢNG GOLDEN
