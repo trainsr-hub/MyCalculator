@@ -154,7 +154,41 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
         )          
     else:          
         ax.fill_between(x, 0, y, alpha=0.3)          
-    if real_x > deadzone_x: ax.fill_between(x[x <= deadzone_x_neo], 0, y[x <= deadzone_x_neo], hatch='/', facecolor='none', edgecolor='black')        
+    if real_x > deadzone_x: ax.fill_between(x[x <= deadzone_x_neo], 0, y[x <= deadzone_x_neo], hatch='/', facecolor='none', edgecolor='black') 
+
+
+# =========================
+    # HATCH VÀNG (ngoài hatch đen)
+    # =========================
+
+    if Optimal_x is not None:
+
+        golden_start = max(400, 800 - Optimal_x)
+        golden_end   = min(700, 1100 - Optimal_x)
+
+        # Giới hạn trong miền hiển thị
+        golden_start = max(0, min(x_max, golden_start))
+        golden_end   = max(0, min(x_max, golden_end))
+
+        if golden_start < golden_end:
+
+            # mask vùng golden
+            golden_mask = (x >= golden_start) & (x <= golden_end)
+
+            # Loại bỏ phần overlap với hatch đen
+            if real_x > deadzone_x:
+                golden_mask &= (x > deadzone_x_neo)
+
+            ax.fill_between(
+                x[golden_mask],
+                0,
+                y[golden_mask],
+                hatch='*',              # Matplotlib không có "star"
+                facecolor='none',
+                edgecolor='gold',       # màu vàng golden
+                linewidth=0
+            )
+       
     # =========================          
     # VÙNG RED (> C)          
     # =========================          
