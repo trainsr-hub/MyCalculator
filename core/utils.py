@@ -224,9 +224,9 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
                 f"{int(golden_start)} ~ {int(golden_end)}",
                 (mid_x, mid_y),
                 ha='center',
-                color="#0000ff",   # text xanh dương
+                color="gold",   # text xanh dương
                 bbox=dict(
-                    facecolor="white",   # khung trắng
+                    facecolor="#0000ff",   # khung trắng
                     edgecolor="black",
                     boxstyle="round,pad=0.3"
                 )
@@ -249,7 +249,8 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
 
         ax.annotate(          
             f"\n({x_point}, {y_point})",          
-            (x_point, y_point),          
+            (x_point, y_point),
+            color="white",          
             xytext=(5, 5),          
             textcoords="offset points"          
         )          
@@ -262,7 +263,8 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
 
         ax.annotate(          
             f"Máu trâu\n({x_point}, {y_intersect})",          
-            (x_point, y_intersect),          
+            (x_point, y_intersect),
+            color="gold",          
             xytext=(5, -25),          
             textcoords="offset points"          
         )          
@@ -272,7 +274,8 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
 
         ax.annotate(          
             f"Damage to\n({x_intersect}, {y_point})",          
-            (x_intersect, y_point),          
+            (x_intersect, y_point),  
+            color="gold",        
             xytext=(5, 10),          
             textcoords="offset points"          
         )          
