@@ -189,6 +189,43 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
                 linewidth=0
             )
        
+# =========================
+            # 2 ĐƯỜNG VIỀN BAO VÙNG GOLDEN
+            # =========================
+
+            ax.axvline(
+                x=golden_start,
+                color='gold',      # cùng màu hatch golden
+                linewidth=2
+            )
+
+            ax.axvline(
+                x=golden_end,
+                color='gold',      # cùng màu hatch golden
+                linewidth=2
+            )
+
+
+            # =========================
+            # CHÚ THÍCH KHOẢNG GOLDEN
+            # =========================
+
+            # đặt annotation ở giữa vùng golden
+            mid_x = (golden_start + golden_end) / 2
+            mid_y = (C - 3.2 * mid_x) * 0.5   # nằm trong vùng non-red
+
+            ax.annotate(
+                f"{int(golden_start)} ~ {int(golden_end)}",
+                (mid_x, mid_y),
+                ha='center',
+                color="#0000ff",   # text xanh dương
+                bbox=dict(
+                    facecolor="white",   # khung trắng
+                    edgecolor="black",
+                    boxstyle="round,pad=0.3"
+                )
+            )
+
     # =========================          
     # VÙNG RED (> C)          
     # =========================          
