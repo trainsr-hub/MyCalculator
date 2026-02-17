@@ -185,7 +185,7 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
                 y[golden_mask],
                 hatch='*',          
                 facecolor='none',
-                edgecolor='#007fff',       # màu vàng golden
+                edgecolor='#8a2be2',       # màu vàng golden
                 linewidth=0
             )
 
