@@ -224,7 +224,7 @@ def show_graph(C, x_point=None, y_point=None, Optimal_x=None):
                 f"{int(golden_start)} ~ {int(golden_end)}",
                 (mid_x, mid_y),
                 ha='center',
-                color="gold",   # text xanh dương
+                color="black",   # text xanh dương
                 bbox=dict(
                     facecolor="white",   # khung trắng
                     edgecolor="black",
