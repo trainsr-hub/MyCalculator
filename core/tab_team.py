@@ -47,7 +47,7 @@ def render():
 
     defaultATK3 = remain_Fero/9 if (900 - Main_Attack < 200) else max(380, 900 - Main_Attack)
     Health3 = st.number_input("3rd Health", min_value=0,
-                              value=min(1300, max(int(remain_Fero/3), 2100 - Main_Health)),
+                              value=int(remain_Fero/3),
                               step=50)
 
     Attack3 = st.number_input("3rd Attack", min_value=0,
