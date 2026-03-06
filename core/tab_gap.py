@@ -9,7 +9,7 @@ def render(Time_Now):
         start_time = select_duration(3, "gap_Tatrtime")
 
     # xử lý start_time
-    if start_time == timedelta(0):
+    if Time_Now == Time_Now + start_time:
         # convert timedelta -> hour/minute
         total_seconds = int(start_time.total_seconds())
         start_hour = total_seconds // 3600
