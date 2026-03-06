@@ -4,7 +4,6 @@ from .utils import format_duration, show_boxed_text, select_duration
 
 
 def render(Time_Now, finish_at):
-    st.markdown(finish_at)
 
     with st.expander("Start Time"):
         start_time = select_duration(3, "gap_Tatrtime")
