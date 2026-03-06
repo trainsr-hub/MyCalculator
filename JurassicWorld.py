@@ -10,7 +10,7 @@ def main():
     tabs = st.tabs(["Hatching Time", "Timers' Gap Balance", "Team Building"])
 
     with tabs[0]:
-        finish_time = tab_hatching.render(Time_Now)
+        finish_time, finish_at = tab_hatching.render(Time_Now)
 
     with tabs[1]:
         tab_gap.render(finish_time)
