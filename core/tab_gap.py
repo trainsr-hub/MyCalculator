@@ -1,9 +1,23 @@
 import streamlit as st
 from datetime import datetime, timedelta
-from .utils import format_duration, show_boxed_text
+from .utils import format_duration, show_boxed_text, select_duration
 
 
 def render(Time_Now):
+
+    with st.expander("Start Time"):
+        start_time = select_duration(3, "gap_Tatrtime")
+
+    # xử lý start_time
+    if start_time == timedelta(0):
+        # convert timedelta -> hour/minute
+        total_seconds = int(start_time.total_seconds())
+        start_hour = total_seconds // 3600
+        start_minute = (total_seconds % 3600) // 60
+
+        # thay giờ và phút của Time_Now
+        Time_Now = Time_Now.replace(hour=start_hour, minute=start_minute)  # modified time
+
     # Selector chọn giờ mục tiêu
     gap_hour_str = st.selectbox(
         "Select Gap Hour",
@@ -11,7 +25,6 @@ def render(Time_Now):
         key="tab2_gap_hour"
     )
 
-    # Input số ngày cộng thêm
     gap_day = st.number_input(
         "Gap Day",
         min_value=0,
@@ -21,15 +34,13 @@ def render(Time_Now):
         key="tab2_gap_day"
     )
 
-    gap_hour = int(gap_hour_str)  # convert string sang int
+    gap_hour = int(gap_hour_str)
 
-    # Tạo mốc thời gian mục tiêu
     target_time = (
         Time_Now.replace(hour=gap_hour, minute=0, second=0, microsecond=0)
         + timedelta(days=gap_day)
     )
 
-    # Nếu target_time thuộc quá khứ (cùng ngày nhưng giờ đã qua)
     if target_time < Time_Now:
         Time_Gap = timedelta(0)
     else:
