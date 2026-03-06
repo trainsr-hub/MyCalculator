@@ -13,7 +13,7 @@ def main():
         finish_time, finish_at = tab_hatching.render(Time_Now)
 
     with tabs[1]:
-        tab_gap.render(finish_time)
+        tab_gap.render(finish_time, finish_at)
 
     with tabs[2]:
         tab_team.render()
