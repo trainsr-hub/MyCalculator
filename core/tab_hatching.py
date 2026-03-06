@@ -15,12 +15,17 @@ def render(Time_Now):
         ads = st.number_input("🎬 Ads", min_value=0, value=default_ads, max_value=10, step=1)
     else:
         ads = 1
+    with st.expander("Spare Time"):
+        spare_time = select_duration(3, "spare_time")
+    
 
     Now_Time = duration * 0.9**ads
     Free_Time = max(duration * 0.05, timedelta(minutes=5))
     Timer = max(timedelta(0), Now_Time - Free_Time)
 
     col1, col2 = st.columns(2)
+
+    Time_Now += spare_time
 
     finish_time = Time_Now + Timer
     colorfree = "#008000" if datetime(1,1,1,7).time() <= finish_time.time() <= datetime(1,1,1,22).time() else "#FF0000"
