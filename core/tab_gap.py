@@ -51,5 +51,6 @@ def render(Time_Now, finish_at):
         "Static",
         format_duration(Time_Gap / 0.95),
         "30px",
-        bg_color="#008000"
+        bg_color="#008000",
+        description=finish_at
     )
