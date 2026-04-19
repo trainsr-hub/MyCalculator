@@ -28,7 +28,7 @@ def render(Time_Now, finish_at):
     gap_day = st.number_input(
         "Gap Day",
         min_value=0,
-        max_value=3,
+        max_value=4,
         value=0,
         step=1,
         key="tab2_gap_day"
