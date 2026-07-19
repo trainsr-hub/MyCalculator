@@ -248,31 +248,53 @@ def format_td(td: timedelta):
 ads = 0
 
 # >>>>>>>>>>>>>>>>>>> CHANGED SECTION START <<<<<<<<<<<<<<<<<<<
-# HACK/FIX: Force execution context to stick with user's specific timezone (Asia/Ho_Chi_Minh).
-# This prevents datetime.now() from fallbacking to UTC on remote Streamlit Cloud instances.
+# HACK/FIX: Injecting configuration expander and shifting execution time context
 from zoneinfo import ZoneInfo
 user_tz = ZoneInfo("Asia/Ho_Chi_Minh")
 
 now = datetime.now(user_tz)
+
+# Simulation parameters controller UI element positioned directly above the windows
+with st.expander("⚙️ TIME SIMULATION PARAMETERS", expanded=False):
+    col1, col2, col3, col4 = st.columns(4)
+    with col1:
+        sel_days = st.selectbox("Days", options=list(range(8)), index=0)
+    with col2:
+        sel_hours = st.selectbox("Hours", options=list(range(24)), index=0)
+    with col3:
+        sel_minutes = st.selectbox("Minutes", options=list(range(60)), index=0)
+    with col4:
+        sel_skip = st.selectbox("Skip", options=list(range(8)), index=0)
+
+# Calculate dynamic duration_arc and apply attenuation algorithms
+duration_arc = timedelta(days=sel_days, hours=sel_hours, minutes=sel_minutes)
+duration_post_skip = duration_arc * (0.9 ** sel_skip)
+duration_arc =  duration_post_skip - max(duration_arc * 0.05, timedelta(minutes=5))
+
+# Apply time shift factor to the base calculation matrix
+now = now + duration_arc
 today = now.date()
 
 # Define optimal targets with explicit timezone binding
 target_min = datetime.combine(today, datetime.min.time(), tzinfo=user_tz).replace(hour=7, minute=30)
+target_medium = datetime.combine(today, datetime.min.time(), tzinfo=user_tz).replace(hour=10, minute=0)
 target_max = datetime.combine(today, datetime.min.time(), tzinfo=user_tz).replace(hour=23, minute=0)
 # >>>>>>>>>>>>>>>>>>> CHANGED SECTION END <<<<<<<<<<<<<<<<<<<<<
 
 # ===================================================================================================
-# CODE MODIFICATION REPORT BLOCK:
-# 1. Imported `ZoneInfo` from standard library `zoneinfo` (fully compatible with Python 3.13+).
-# 2. Replaced `datetime.now()` with `datetime.now(user_tz)` to explicitly fetch Vietnam Time (ICT).
-# 3. Passed `tzinfo=user_tz` inside `datetime.combine(...)` for both target fields.
-# 4. Result: Absolute mathematical subtraction between targets and `now` remains consistent 
-#    regardless of host deployment location.
+# CODE MODIFICATION REPORT BLOCK (EXPANSION):
+# 1. Added `st.expander` right above the execution calculations with `expanded=False`.
+# 2. Implemented 4 single-value dropdown selectors using `st.selectbox` for Days, Hours, Minutes, and Skip.
+# 3. Formed `duration_arc` via `timedelta` using the selected components.
+# 4. Computed the exact mathematical attenuation requested: `duration_arc *= 0.9**skip` 
+#    and `duration_arc -= max(duration_arc * 0.05, 5 minutes)`.
+# 5. Shifted the reference execution time: `now = now + duration_arc` impacting all downstream card logic.
 # ===================================================================================================
 
 # Offset boundaries from this moment
 bien_min = target_min - now
 bien_max = target_max - now
+bien_medium = target_medium - now
 
 ZERO = timedelta()
 SEVEN = timedelta(days=7)
@@ -283,28 +305,35 @@ results = []
 for day in range(6):
     offset = timedelta(days=day)
     current_min = bien_min + offset
+    current_medium = bien_medium + offset
     current_max = bien_max + offset
 
     # Speed modifications
     cal1_min = current_min / (0.9 ** ads)
+    cal1_medium = current_medium / (0.9 ** ads)
     cal1_max = current_max / (0.9 ** ads)
 
     # Standard safe-buffer adaptations
     cal2_min = max(cal1_min + timedelta(minutes=5), cal1_min / 0.95)
+    call2_medium = max(cal1_medium + timedelta(minutes=5), cal1_medium / 0.95)
     cal2_max = max(cal1_max + timedelta(minutes=5), cal1_max / 0.95)
 
     # Hard boundary clamping
     cal2_min = clamp(cal2_min, ZERO, SEVEN)
+    cal2_medium = clamp(call2_medium, ZERO, SEVEN)
     cal2_max = clamp(cal2_max, ZERO, SEVEN)
 
     text_min = format_td(cal2_min)
+    text_medium = format_td(call2_medium)
     text_max = format_td(cal2_max)
 
     results.append({
         "day": day,
         "min": text_min,
+        "medium": text_medium,
         "max": text_max,
         "raw_min": cal2_min,
+        "raw_medium": call2_medium,
         "raw_max": cal2_max
     })
 
@@ -388,8 +417,9 @@ for tab, chunk in zip(tabs, chunks):
 """
                 timeline_labels = f"""
 <div class="timeline-labels">
-<span style="color: #4ade80; font-weight: 800;">NOW (WINDOW OPEN)</span>
-<span class="lbl-max">MAX EXPIRED ({row['max']})</span>
+<span style="color: #4ade80; font-weight: 800;">Static ~ {now.time().strftime("%H:%M")}</span>
+<span class="lbl-min">{row['medium'] if row['medium'] else ""}</span>
+<span class="lbl-max">MAX EXPIRED</span>
 </div>
 """
             else:
@@ -404,9 +434,9 @@ for tab, chunk in zip(tabs, chunks):
 """
                 timeline_labels = f"""
 <div class="timeline-labels">
-<span>NOW</span>
-<span class="lbl-min">MIN WINDOW ({row['min']})</span>
-<span class="lbl-max">MAX EXPIRED ({row['max']})</span>
+<span >Hum ~ {now.time().strftime("%H:%M")}</span>
+<span class="lbl-min">{row['medium']}</span>
+<span class="lbl-max">MAX EXPIRED</span>
 </div>
 """
 
