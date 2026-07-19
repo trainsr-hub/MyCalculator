@@ -1,3 +1,5 @@
+# path: app.py
+
 from datetime import datetime, timedelta
 import streamlit as st
 
@@ -244,12 +246,29 @@ def format_td(td: timedelta):
 # Calculations System
 # ============================================================
 ads = 0
-now = datetime.now()
+
+# >>>>>>>>>>>>>>>>>>> CHANGED SECTION START <<<<<<<<<<<<<<<<<<<
+# HACK/FIX: Force execution context to stick with user's specific timezone (Asia/Ho_Chi_Minh).
+# This prevents datetime.now() from fallbacking to UTC on remote Streamlit Cloud instances.
+from zoneinfo import ZoneInfo
+user_tz = ZoneInfo("Asia/Ho_Chi_Minh")
+
+now = datetime.now(user_tz)
 today = now.date()
 
-# Define optimal targets
-target_min = datetime.combine(today, datetime.min.time()).replace(hour=7, minute=30)
-target_max = datetime.combine(today, datetime.min.time()).replace(hour=23, minute=0)
+# Define optimal targets with explicit timezone binding
+target_min = datetime.combine(today, datetime.min.time(), tzinfo=user_tz).replace(hour=7, minute=30)
+target_max = datetime.combine(today, datetime.min.time(), tzinfo=user_tz).replace(hour=23, minute=0)
+# >>>>>>>>>>>>>>>>>>> CHANGED SECTION END <<<<<<<<<<<<<<<<<<<<<
+
+# ===================================================================================================
+# CODE MODIFICATION REPORT BLOCK:
+# 1. Imported `ZoneInfo` from standard library `zoneinfo` (fully compatible with Python 3.13+).
+# 2. Replaced `datetime.now()` with `datetime.now(user_tz)` to explicitly fetch Vietnam Time (ICT).
+# 3. Passed `tzinfo=user_tz` inside `datetime.combine(...)` for both target fields.
+# 4. Result: Absolute mathematical subtraction between targets and `now` remains consistent 
+#    regardless of host deployment location.
+# ===================================================================================================
 
 # Offset boundaries from this moment
 bien_min = target_min - now
